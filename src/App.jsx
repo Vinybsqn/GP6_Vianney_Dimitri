@@ -11,12 +11,16 @@ import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
 
 function App() {
- // const [count, setCount] = useState(0);
-
-
+ 
   return (
     <>
-
+      <img src={logo} alt="EchecEtMatch" style={{
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '50%',
+              
+          }}/>
       <BrowserRouter>
         <Nav />
         <Routes>
