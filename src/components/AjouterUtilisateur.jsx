@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import app from '../../firebase-config'; // Assurez-vous que le chemin d'accès est correct
+import app from '../../firebase-config';
 
 
 const AjouterUtilisateur = () => {

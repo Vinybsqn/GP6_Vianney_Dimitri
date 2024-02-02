@@ -1,29 +1,22 @@
 import { NavLink } from "react-router-dom";
-
-const checkIsActive = (params) => {
-    console.log(params)
-    return {
-        color: params.isActive ? 'orange' : 'black',
-        backgroundColor: params.isActive ? 'grey' : 'white'
-    }
-}
+import '../styles/_Nav.scss';
 
 const Nav = () => {
     return (
-        <nav>
-            <ul>
+        <nav className="navbar">
+            <ul className="nav-links">
                 <li>
-                    <NavLink style={checkIsActive} to="/home">Accueil</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/home">Accueil</NavLink>
                 </li>
                 <li>
-                    <NavLink style={checkIsActive} to="/game">Echec&Match</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/game">Echec&Match</NavLink>
                 </li>
                 <li>
-                    <NavLink style={checkIsActive} to="/about">A propos de nous</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/about">A propos de nous</NavLink>
                 </li>
             </ul>
         </nav>
-    )
-}
+    );
+};
 
-export default Nav
+export default Nav;

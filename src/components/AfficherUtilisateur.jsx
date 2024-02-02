@@ -1,7 +1,7 @@
 // afficher les informations d'un utilisateur
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-import app from '../../firebase-config'; // Assurez-vous que le chemin d'accès est correct
+import app from '../../firebase-config';
 
 const AfficherUtilisateurs = () => {
     const [utilisateurs, setUtilisateurs] = useState([]);
