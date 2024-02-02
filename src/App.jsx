@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {createContext, useState} from "react";
 import './App.css'
+import './styles/index.scss'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import Nav from './components/nav'
+import ErrorPage from './pages/errorPage'
+import HomePage from './pages/home'
+import AjouterUtilisateur from './components/AjouterUtilisateur.';
+import logo from '../public/logo.png'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <img src={logo} alt="Pendax Game" style={{
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: '50%',
+              
+          }}/>
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </BrowserRouter>
+      <div className="App">
+            <h1>Ajouter un utilisateur à Firestore</h1>
+            <AjouterUtilisateur />
+        </div>
     </>
   )
 }
