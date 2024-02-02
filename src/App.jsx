@@ -10,12 +10,10 @@ import logo from '../public/logo.png'
 import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
 
 function App() {
- // const [count, setCount] = useState(0);
-
-
+ 
   return (
     <>
-      <img src={logo} alt="Pendax Game" style={{
+      <img src={logo} alt="EchecEtMatch" style={{
               display: 'block',
               marginLeft: 'auto',
               marginRight: 'auto',
