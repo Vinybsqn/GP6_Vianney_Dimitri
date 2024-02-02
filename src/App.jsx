@@ -1,15 +1,16 @@
-import {createContext, useState} from "react";
+// import {useState} from "react";
 import './App.css'
 import './styles/index.scss'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Nav from './components/nav'
 import ErrorPage from './pages/errorPage'
 import HomePage from './pages/home'
-import AjouterUtilisateur from './components/AjouterUtilisateur.';
+import AjouterUtilisateur from './components/AjouterUtilisateur';
 import logo from '../public/logo.png'
 
 function App() {
-  const [count, setCount] = useState(0)
+ // const [count, setCount] = useState(0);
+
 
   return (
     <>
