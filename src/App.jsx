@@ -7,6 +7,7 @@ import ErrorPage from './pages/errorPage'
 import HomePage from './pages/home'
 import AjouterUtilisateur from './components/AjouterUtilisateur';
 import logo from '../public/logo.png'
+import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
 
 function App() {
  // const [count, setCount] = useState(0);
@@ -31,6 +32,7 @@ function App() {
       <div className="App">
             <h1>Ajouter un utilisateur à Firestore</h1>
             <AjouterUtilisateur />
+          <AfficherUtilisateurs />
         </div>
     </>
   )
