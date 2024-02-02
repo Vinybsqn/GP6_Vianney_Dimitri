@@ -8,6 +8,7 @@ import HomePage from './pages/home'
 import AjouterUtilisateur from './components/AjouterUtilisateur';
 import logo from '../public/logo.png'
 import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
+import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 
 function App() {
  
@@ -31,6 +32,12 @@ function App() {
             <h1>Ajouter un utilisateur à Firestore</h1>
             <AjouterUtilisateur />
           <AfficherUtilisateurs />
+        </div>
+
+        <div>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
+            <h1>Bienvenue dans l'Application</h1>
+            <AuthentificationGoogle />
         </div>
     </>
   )
