@@ -1,6 +1,6 @@
 // import {useState} from "react";
 import './App.css'
-import './styles/index.scss'
+import './index.css'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Nav from './components/nav'
 import ErrorPage from './pages/errorPage'
