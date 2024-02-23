@@ -22,11 +22,19 @@ const ConnexionForm = () => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Si l'utilisateur est déjà connecté, nous le redirigeons vers la page d'accueil
+                console.log('Utilisateur connecté');
+            }
+        });
+        return () => unsubscribe();
+    }, [auth, navigate]);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
                 navigate('/home');
             }
         });
-        return unsubscribe;
+        return () => unsubscribe();
     }, [auth, navigate]);
 
     const handleLogin = async (e) => {

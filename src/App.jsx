@@ -20,11 +20,13 @@ function App() {
                     path="/home"
                     element={
                         <PrivateRoute>
+                            <Nav />
                             <HomePage />
                         </PrivateRoute>
                     }
                 />
             </Routes>
+            <Footer />
         </BrowserRouter>
     );
 }
