@@ -1,4 +1,4 @@
-/* styles/home.css */
+/* styles/ConnexionForm.css */
 
 :root {
   --noir: #000000;
@@ -7,43 +7,66 @@
   --violet: #74279E;
 }
 
-body {
-  /* Assurez-vous que le body a un arrière-plan qui mettra en valeur l'effet de flou */
-  background: linear-gradient(135deg, var(--bleu) 0%, var(--violet) 100%);
-  min-height: 100vh;
-}
-
-.home-page {
+.connexion-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  margin: auto;
+  margin-top: 50px;
   padding: 20px;
-  color: var(--blanc);
-}
-
-.cta-button {
-  padding: 10px 20px;
-  background: rgba(255, 255, 255, 0.4); /* Augmenter l'opacité pour un effet plus subtil */
-  backdrop-filter: blur(10px); /* Augmenter le flou pour un effet plus prononcé */
-  border: 1px solid var(--blanc);
-  border-radius: 5px;
-  color: var(--blanc);
-  text-decoration: none;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.cta-button:hover {
-  background-color: rgba(116, 39, 158, 0.8); /* Ajouter une légère transparence au hover */
-  color: var(--blanc);
-  transform: scale(1.05);
-}
-
-.feature-section, .community-section {
-  padding: 20px;
-  background: rgba(18, 34, 93, 0.6); /* Augmenter l'opacité pour une meilleure lisibilité */
-  backdrop-filter: blur(15px); /* Augmenter le flou pour un effet de verre plus marqué */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
   border-radius: 10px;
-  margin: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  height: 80vh; /* Ajout de cette ligne */
+}
+
+.signup-form, .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+input, select, button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--bleu);
+  background-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
+
+input:focus, select:focus, button:focus {
+  border-color: var(--violet);
+}
+
+button {
+  color: var(--blanc);
+  background-color: var(--bleu);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--violet);
+  transform: translateY(-2px);
+}
+
+.toggle-form {
+  margin-top: 15px;
+  background-color: transparent;
+  color: var(--blanc);
+  border: 2px solid var(--blanc);
+}
+
+.toggle-form:hover {
+  background-color: var(--blanc);
+  color: var(--noir);
+}
+
+h2 {
+  color: var(--blanc);
+  margin-bottom: 15px;
 }
