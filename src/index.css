@@ -9,10 +9,12 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bleu);
-  color: var(--blanc);
+  padding: 0;
+  background: linear-gradient(135deg, #12225D 0%, #74279E 100%);
+  color: #FFFFFF;
+  font-family: 'Arial', sans-serif;
 }
+
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.1);
