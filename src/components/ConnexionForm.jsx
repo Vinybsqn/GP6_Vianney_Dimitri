@@ -53,12 +53,12 @@ const ConnexionForm = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             await setDoc(doc(db, "utilisateurs", user.uid), {
+                email,
                 username,
                 firstName,
                 lastName,
                 dob,
                 genre,
-                // Remarque : Nous ne stockons pas le mot de passe dans Firestore
             });
             navigate('/home');
         } catch (error) {
