@@ -8,18 +8,24 @@ import AjouterUtilisateur from './components/AjouterUtilisateur';
 import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
 import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 function App() {
-  return (
-      <BrowserRouter>
-        <Nav />
-        <Routes>
-          <Route path="/" element={<ConnexionForm />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<ConnexionForm />} />
+                <Route
+                    path="/home"
+                    element={
+                        <PrivateRoute>
+                            <HomePage />
+                        </PrivateRoute>
+                    }
+                />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;

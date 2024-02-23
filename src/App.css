@@ -67,4 +67,3 @@ body, html {
 .bouton:hover {
   background-color: var(--noir);
 }
-/* Styles spécifiques pour les autres composants comme AjouterUtilisateur, AfficherUtilisateur, etc. */
