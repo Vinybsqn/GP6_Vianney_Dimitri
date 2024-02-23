@@ -1,0 +1,22 @@
+/* ProfilPage.css */
+.profil-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Assure que la page prend au minimum toute la hauteur de l'écran */
+    font-family: 'Arial', sans-serif; /* Police de caractère */
+  }
+  
+  .profil-page h1 {
+    margin-bottom: 20px; /* Espacement sous le titre */
+  }
+  
+  .profil-page p {
+    margin: 5px 0; /* Espacement vertical entre les paragraphes */
+    font-size: 18px; /* Taille du texte */
+    line-height: 1.6; /* Hauteur de ligne */
+  }
+  
+  /* Vous pouvez ajouter des styles supplémentaires ici pour des boutons ou d'autres éléments que vous souhaitez inclure */
+  

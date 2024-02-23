@@ -35,10 +35,13 @@ const Nav = () => {
                     <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/home">Accueil</NavLink>
                 </li>
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/game">Echec&Match</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/match">Matchs</NavLink>
                 </li>
                 <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/about">A propos de nous</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/chat">Chats</NavLink>
+                </li>
+                <li>
+                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/profil">Profil</NavLink>
                 </li>
             </ul>
             {isUserSignedIn && (
