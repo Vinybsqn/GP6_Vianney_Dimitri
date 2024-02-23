@@ -18,15 +18,6 @@ const Nav = () => {
         return unsubscribe; // S'assurer de se désabonner lors du démontage du composant
     }, [auth]);
 
-    const handleSignOut = async () => {
-        try {
-            await signOut(auth);
-            console.log('Déconnexion réussie');
-            navigate('/');
-        } catch (error) {
-            console.error('Erreur lors de la déconnexion :', error);
-        }
-    };
 
     return (
         <nav className="navbar">
@@ -43,12 +34,8 @@ const Nav = () => {
                 <li>
                     <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/profil">Profil</NavLink>
                 </li>
+                
             </ul>
-            {isUserSignedIn && (
-                <button onClick={handleSignOut} className="logout-button">
-                    Déconnexion
-                </button>
-            )}
         </nav>
     );
 };

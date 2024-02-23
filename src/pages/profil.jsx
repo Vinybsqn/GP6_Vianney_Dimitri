@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import '../styles/ProfilPage.css'; // Assurez-vous d'ajouter le CSS correspondant
+import '../styles/ProfilPage.css';
 
 const ProfilPage = () => {
   const [userData, setUserData] = useState({});
@@ -25,10 +25,19 @@ const ProfilPage = () => {
         navigate("/connexion");
       }
     });
-    
 
     return () => unsubscribe();
   }, [auth, db, navigate]);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log('Déconnexion réussie');
+      navigate('/');
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion :', error);
+    }
+  };
 
   return (
     <div className="profil-page">
@@ -38,6 +47,9 @@ const ProfilPage = () => {
       <p>Prénom: {userData.firstName}</p>
       <p>Genre: {userData.genre}</p>
       <p>Date de naissance: {userData.dob}</p>
+      <button onClick={handleSignOut} className="logout-button">
+        Déconnexion
+      </button>
     </div>
   );
 };
