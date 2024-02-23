@@ -1,40 +1,68 @@
 .connexion-form {
   max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(to right bottom, rgba(18, 34, 93, 0.7), rgba(116, 39, 158, 0.7)); // Gradient de bleu à violet avec transparence
+  backdrop-filter: blur(10px); // Flou de l'arrière-plan pour l'effet verre
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.3); // Bordure légèrement blanche pour un effet brillant
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); // Ombre douce pour le contraste
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF; // Texte blanc pour une bonne lisibilité
 
   h2 {
-    text-align: center;
+    color: #FFFFFF; // Titre en blanc
+    margin-bottom: 20px;
   }
 
   input[type="text"],
   input[type="email"],
   input[type="password"],
-  input[type="date"] {
-    width: 100%;
+  input[type="date"],
+  select {
+    width: calc(100% - 20px); // 100% width minus padding
     padding: 10px;
-    margin: 10px 0;
+    margin-bottom: 15px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.4); // Bordure pour les champs de formulaire
+    background: rgba(255, 255, 255, 0.2); // Fond des champs de formulaire
+    color: #FFFFFF; // Texte en blanc
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.7); // Placeholder plus clair
+    }
+
+    &:focus {
+      border-color: rgba(255, 255, 255, 0.6); // Éclat à la mise au point
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3); // Halo lumineux autour du champ focus
+    }
   }
 
-  .toggle-form, button[type="submit"] {
-    width: 100%;
+  button[type="submit"], .toggle-form {
+    width: calc(100% - 20px); // 100% width minus padding
     padding: 10px;
-    margin: 10px 0;
+    margin-top: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #007bff;
+    background: linear-gradient(to right, #12225D, #74279E); // Gradient de bleu à violet pour les boutons
     color: white;
     cursor: pointer;
+    transition: all 0.3s;
 
     &:hover {
-      background-color: #0056b3;
+      background: linear-gradient(to left, #12225D, #74279E); // Gradient inversé au survol
     }
   }
 
   .toggle-form {
-    background-color: #6c757d;
+    background-color: transparent; // Fond transparent pour le bouton de bascule
+    color: #FFFFFF; // Texte en blanc
+    margin-bottom: 0;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1); // Légère surbrillance au survol
+    }
   }
 }

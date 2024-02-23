@@ -11,6 +11,8 @@ const ConnexionForm = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dob, setDob] = useState(''); // Date of Birth (Date de naissance)
+// ajouter genre avec choix homme ou femme et autre
+    const [genre, setGenre] = useState('');
     const [isNewUser, setIsNewUser] = useState(false);
 
     const auth = getAuth();
@@ -41,6 +43,7 @@ const ConnexionForm = () => {
                 lastName,
                 dob,
                 email,
+                genre,
             });
 
             // Rediriger l'utilisateur ou afficher un message de succès
@@ -58,6 +61,12 @@ const ConnexionForm = () => {
                     <input type="text" placeholder="Prénom" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                     <input type="text" placeholder="Nom" value={lastName} onChange={(e) => setLastName(e.target.value)} />
                     <input type="date" placeholder="Date de naissance" value={dob} onChange={(e) => setDob(e.target.value)} />
+                    <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+                        <option value="">Sélectionnez votre genre</option>
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                        <option value="autre">Autre</option>
+                    </select>
                     <input type="email" placeholder="Adresse e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
                     {/* eslint-disable-next-line react/no-unescaped-entities */}

@@ -11,33 +11,15 @@ import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
 
 function App() {
- 
   return (
-    <>
-
       <BrowserRouter>
-        <Nav />
         <Routes>
           <Route path="/" element={<ConnexionForm />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/inscription" element={<ConnexionForm />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
-        {
-
-                    <div className="App">
-            <h1>Ajouter un utilisateur à Firestore</h1>
-            <AjouterUtilisateur />
-          <AfficherUtilisateurs />
-
-      <h1>Bienvenue dans l Application</h1>
-      <AuthentificationGoogle />
-    </div>
-        }
-
-    </>
-  )
+  );
 }
 
 export default App;

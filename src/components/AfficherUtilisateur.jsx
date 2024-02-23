@@ -25,7 +25,7 @@ const AfficherUtilisateurs = () => {
             <ul>
                 {utilisateurs.map((utilisateur, index) => (
                     <li key={index}>
-                        {utilisateur.nom} - {utilisateur.prenom} - {utilisateur.email}
+                        {utilisateur.lastName} - {utilisateur.firstName} - {utilisateur.email}
                     </li>
                 ))}
             </ul>
