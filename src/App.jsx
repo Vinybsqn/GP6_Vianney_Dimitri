@@ -1,6 +1,5 @@
 // import {useState} from "react";
 import './App.css'
-import './index.css'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Nav from './components/nav'
 import ErrorPage from './pages/errorPage'
@@ -13,6 +12,7 @@ import ConnexionForm from "./components/ConnexionForm.jsx";
 function App() {
   return (
       <BrowserRouter>
+        <Nav />
         <Routes>
           <Route path="/" element={<ConnexionForm />} />
           <Route path="/home" element={<HomePage />} />

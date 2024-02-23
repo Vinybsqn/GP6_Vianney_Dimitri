@@ -1,68 +1,70 @@
+/* styles/ConnexionForm.css */
+
+:root {
+  --noir: #000000;
+  --blanc: #FFFFFF;
+  --bleu: #12225D;
+  --violet: #74279E;
+}
+
 .connexion-form {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 40px;
-  background: linear-gradient(to right bottom, rgba(18, 34, 93, 0.7), rgba(116, 39, 158, 0.7)); // Gradient de bleu à violet avec transparence
-  backdrop-filter: blur(10px); // Flou de l'arrière-plan pour l'effet verre
-  border-radius: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3); // Bordure légèrement blanche pour un effet brillant
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); // Ombre douce pour le contraste
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #FFFFFF; // Texte blanc pour une bonne lisibilité
+  justify-content: center;
+  margin: auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
 
-  h2 {
-    color: #FFFFFF; // Titre en blanc
-    margin-bottom: 20px;
-  }
+.signup-form, .login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
 
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="date"],
-  select {
-    width: calc(100% - 20px); // 100% width minus padding
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.4); // Bordure pour les champs de formulaire
-    background: rgba(255, 255, 255, 0.2); // Fond des champs de formulaire
-    color: #FFFFFF; // Texte en blanc
+input, select, button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--bleu);
+  background-color: rgba(255, 255, 255, 0.5);
+  outline: none;
+}
 
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.7); // Placeholder plus clair
-    }
+input:focus, select:focus, button:focus {
+  border-color: var(--violet);
+}
 
-    &:focus {
-      border-color: rgba(255, 255, 255, 0.6); // Éclat à la mise au point
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3); // Halo lumineux autour du champ focus
-    }
-  }
+button {
+  color: var(--blanc);
+  background-color: var(--bleu);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-  button[type="submit"], .toggle-form {
-    width: calc(100% - 20px); // 100% width minus padding
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;
-    border: none;
-    background: linear-gradient(to right, #12225D, #74279E); // Gradient de bleu à violet pour les boutons
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s;
+button:hover {
+  background-color: var(--violet);
+  transform: translateY(-2px);
+}
 
-    &:hover {
-      background: linear-gradient(to left, #12225D, #74279E); // Gradient inversé au survol
-    }
-  }
+.toggle-form {
+  margin-top: 15px;
+  background-color: transparent;
+  color: var(--blanc);
+  border: 2px solid var(--blanc);
+}
 
-  .toggle-form {
-    background-color: transparent; // Fond transparent pour le bouton de bascule
-    color: #FFFFFF; // Texte en blanc
-    margin-bottom: 0;
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1); // Légère surbrillance au survol
-    }
-  }
+.toggle-form:hover {
+  background-color: var(--blanc);
+  color: var(--noir);
+}
+
+h2 {
+  color: var(--blanc);
+  margin-bottom: 15px;
 }

@@ -1,69 +1,60 @@
+/* index.css */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: rgba(255, 255, 255, 0.2);
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  --noir: #000000;
+  --blanc: #FFFFFF;
+  --bleu: #12225D;
+  --violet: #74279E;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: var(--bleu);
+  color: var(--blanc);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.container {
+  padding: 20px;
+  margin: 10px;
+}
+
+.bouton {
+  background-color: var(--violet);
+  color: var(--blanc);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.bouton:hover {
+  background-color: var(--noir);
 }
+
+.carte {
+  margin: 20px;
+  padding: 20px;
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+}
+
+.carte-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.carte-content {
+  font-size: 16px;
+}
+
+/* Ajoutez d'autres styles spécifiques à votre application ici */

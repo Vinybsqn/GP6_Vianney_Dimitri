@@ -1,66 +1,70 @@
-#root {
-  max-width: 1280px;
-  margin: 0 ;
-  text-align: center;
+/* App.css */
+
+:root {
+  --noir: #000000;
+  --blanc: #FFFFFF;
+  --bleu: #12225D;
+  --violet: #74279E;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bleu);
+  color: var(--blanc);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-ul{
-  list-style-type: none;
+.nav {
   display: flex;
-  justify-content: center;
-  gap: 30px;
+  justify-content: space-between;
   padding: 20px;
-
-  li{
-      a{
-          text-decoration: none;
-          color: #000;
-          font-size: 1.5rem;
-          font-weight: bold;
-          padding: 10px 20px;
-          border-radius: 5px;
-          transition: all .3s ease;
-
-          &:hover{
-              background-color: #000;
-              color: #fff;
-          }
-      }
-  }
+  background-color: var(--noir);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.nav a {
+  color: var(--blanc);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.glassmorphism {
+  background: rgba( 255, 255, 255, 0.25 );
+  backdrop-filter: blur( 10px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.formulaire {
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: auto;
+}
+
+.input {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--blanc);
+  background-color: transparent;
+  color: var(--blanc);
+}
+
+.bouton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--violet);
+  color: var(--blanc);
+  transition: background-color 0.3s;
+}
+
+.bouton:hover {
+  background-color: var(--noir);
+}
+/* Styles spécifiques pour les autres composants comme AjouterUtilisateur, AfficherUtilisateur, etc. */

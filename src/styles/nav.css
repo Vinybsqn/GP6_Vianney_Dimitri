@@ -1,31 +1,41 @@
-.navbar q {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #333;
-  overflow: hidden;
-  z-index: 1000;
+/* styles/nav.css */
+
+:root {
+  --noir: #000000;
+  --blanc: #FFFFFF;
+  --bleu: #12225D;
+  --violet: #74279E;
 }
 
-.navbar q .nav-links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.navbar {
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 20px;
+  background: rgba( 18, 34, 93, 0.5 ); /* Utilise le bleu avec une transparence */
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.navbar q .nav-links .nav-link {
-  display: block;
-  padding: 14px 20px;
-  color: white;
-  text-align: center;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
   text-decoration: none;
-  transition: background-color 0.3s;
+  color: var(--blanc);
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.navbar q .nav-links .nav-link:hover, 
-.navbar q .nav-links .nav-link.active {
-  background-color: #555;
+.nav-link:hover, .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--violet);
+}
+
+/* Si vous souhaitez ajouter un effet de soulignement ou d'autres styles pour le lien actif */
+.nav-link.active {
+  border-bottom: 2px solid var(--violet);
 }
