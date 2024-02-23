@@ -8,6 +8,7 @@ import AjouterUtilisateur from './components/AjouterUtilisateur';
 import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
 import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
+import Footer from "./components/footer.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
   );
 }
