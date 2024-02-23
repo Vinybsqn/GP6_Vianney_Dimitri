@@ -14,34 +14,26 @@ function App() {
  
   return (
     <>
-      <img src={logo} alt="EchecEtMatch" style={{
-              display: 'block',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              width: '50%',
-              
-          }}/>
+
       <BrowserRouter>
         <Nav />
         <Routes>
           <Route path="/" element={<ConnexionForm />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/inscription" element={<ConnexionForm />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
         {
-            /*
+
                     <div className="App">
             <h1>Ajouter un utilisateur à Firestore</h1>
             <AjouterUtilisateur />
           <AfficherUtilisateurs />
-        </div>
 
-        <div>
-      <h1>Bienvenue dans l'Application</h1>
+      <h1>Bienvenue dans l Application</h1>
       <AuthentificationGoogle />
     </div>
-             */
         }
 
     </>
