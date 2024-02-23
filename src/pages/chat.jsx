@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getDatabase, ref, push, onValue, serverTimestamp } from 'firebase/database';
-import app from '../../firebase-config'; // Ensure that this import path is correct
-import '../styles/chatPage.css';
+import app from './../../firebase-config'; // Ensure that this import path is correct
+import './../styles/chatPage.css';
 
 const ChatPage = () => {
     const [message, setMessage] = useState('');
