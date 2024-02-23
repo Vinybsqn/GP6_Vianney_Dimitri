@@ -7,12 +7,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Prend toute la hauteur de l'écran */
-  width: 100vw; /* Prend toute la largeur de l'écran */
+  height: 100vh;
+  /* Prend toute la hauteur de l'écran */
+  width: 100vw;
+  /* Prend toute la largeur de l'écran */
   padding-bottom: 10px;
   gap: 10px;
   margin-top: -100px;
-  background: linear-gradient(to right, rgba(18, 34, 93, 0.8), rgba(116, 39, 158, 0.8)); /* Un fond avec dégradé */
+  background: linear-gradient(to right, rgba(18, 34, 93, 0.8), rgba(116, 39, 158, 0.8));
+  /* Un fond avec dégradé */
 }
 
 form {
@@ -25,11 +28,15 @@ form {
   gap: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 40%; /* Adaptatif selon la taille de l'écran */
-  max-width: 350px; /* Limite pour les grands écrans */
+  width: 40%;
+  /* Adaptatif selon la taille de l'écran */
+  max-width: 350px;
+  /* Limite pour les grands écrans */
 }
 
-input, select, button {
+input,
+select,
+button {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -37,7 +44,8 @@ input, select, button {
   color: #fff;
 }
 
-input::placeholder, select {
+input::placeholder,
+select {
   color: #e6e6e6;
 }
 
@@ -70,7 +78,9 @@ h2 {
 }
 
 /* Ajustements pour les sélecteurs et boutons pour améliorer l'accessibilité */
-input:focus, select:focus, button:focus {
+input:focus,
+select:focus,
+button:focus {
   outline: 2px solid #f1c40f;
   outline-offset: 2px;
 }

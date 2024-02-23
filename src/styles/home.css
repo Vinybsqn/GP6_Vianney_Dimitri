@@ -14,10 +14,11 @@
     gap: 20px;
     padding: 20px;
     color: var(--blanc);
-    
+
 }
 
-h1, h2 {
+h1,
+h2 {
     color: var(--blanc);
 }
 
@@ -48,9 +49,11 @@ p {
     transform: scale(1.05);
 }
 
-.feature-section, .community-section {
+.feature-section,
+.community-section {
     padding: 20px;
-    background: rgba(18, 34, 93, 0.5); /* Utilisation de --bleu avec une opacité */
+    background: rgba(18, 34, 93, 0.5);
+    /* Utilisation de --bleu avec une opacité */
     backdrop-filter: blur(10px);
     border-radius: 10px;
     margin: 20px;

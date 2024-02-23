@@ -7,7 +7,8 @@
   --violet: #74279E;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -20,7 +21,7 @@ body, html {
   justify-content: space-between;
   padding: 20px;
   background-color: var(--noir);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav a {
@@ -30,10 +31,10 @@ body, html {
 }
 
 .glassmorphism {
-  background: rgba( 255, 255, 255, 0.25 );
-  backdrop-filter: blur( 10px );
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .formulaire {

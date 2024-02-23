@@ -11,7 +11,8 @@
   display: flex;
   justify-content: center;
   padding: 20px;
-  background: rgba( 18, 34, 93, 0.5 ); /* Utilise le bleu avec une transparence */
+  background: rgba(18, 34, 93, 0.5);
+  /* Utilise le bleu avec une transparence */
   backdrop-filter: blur(5px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -30,7 +31,8 @@
   transition: background-color 0.3s ease;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   background-color: rgba(255, 255, 255, 0.2);
   color: var(--violet);
 }

@@ -19,7 +19,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ConnexionForm />} />
-                
+
                 <Route
                     path="/home"
                     element={

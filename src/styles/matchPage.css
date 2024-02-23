@@ -7,16 +7,16 @@
     padding: 20px;
     min-height: 100vh;
     color: var(--blanc);
-  }
-  
-  .match-container {
+}
+
+.match-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-  }
-  
-  .profile-card {
+}
+
+.profile-card {
     width: 200px;
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
@@ -28,53 +28,52 @@
     gap: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: transform 0.3s;
-  }
-  
-  .profile-card:hover {
+}
+
+.profile-card:hover {
     transform: translateY(-5px);
-  }
-  
-  .profile-image {
+}
+
+.profile-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--blanc);
-  }
-  
-  .profile-name {
+}
+
+.profile-name {
     font-size: 1.2rem;
     font-weight: bold;
-  }
-  
-  .profile-actions {
+}
+
+.profile-actions {
     display: flex;
     gap: 10px;
-  }
-  
-  .action-button {
+}
+
+.action-button {
     padding: 5px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s;
-  }
-  
-  .like-button {
+}
+
+.like-button {
     background-color: #4caf50;
     color: white;
-  }
-  
-  .like-button:hover {
+}
+
+.like-button:hover {
     background-color: #45a049;
-  }
-  
-  .dislike-button {
+}
+
+.dislike-button {
     background-color: #f44336;
     color: white;
-  }
-  
-  .dislike-button:hover {
+}
+
+.dislike-button:hover {
     background-color: #da190b;
-  }
-  
+}

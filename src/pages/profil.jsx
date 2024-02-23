@@ -25,6 +25,7 @@ const ProfilPage = () => {
         navigate("/connexion");
       }
     });
+    
 
     return () => unsubscribe();
   }, [auth, db, navigate]);
