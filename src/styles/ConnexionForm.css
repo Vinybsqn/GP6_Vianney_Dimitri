@@ -1,72 +1,76 @@
-/* styles/ConnexionForm.css */
+/* ConnexionForm.css */
 
-:root {
-  --noir: #000000;
-  --blanc: #FFFFFF;
-  --bleu: #12225D;
-  --violet: #74279E;
-}
+/* ConnexionForm.css */
 
 .connexion-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto;
-  margin-top: 50px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  height: 80vh; /* Ajout de cette ligne */
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  width: 100vw; /* Prend toute la largeur de l'écran */
+  padding-bottom: 10px;
+  gap: 10px;
+  margin-top: -100px;
+  background: linear-gradient(to right, rgba(18, 34, 93, 0.8), rgba(116, 39, 158, 0.8)); /* Un fond avec dégradé */
 }
 
-.signup-form, .login-form {
+form {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
+  gap: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 40%; /* Adaptatif selon la taille de l'écran */
+  max-width: 350px; /* Limite pour les grands écrans */
 }
 
 input, select, button {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid var(--bleu);
-  background-color: rgba(255, 255, 255, 0.5);
-  outline: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
-input:focus, select:focus, button:focus {
-  border-color: var(--violet);
+input::placeholder, select {
+  color: #e6e6e6;
 }
 
 button {
-  color: var(--blanc);
-  background-color: var(--bleu);
+  background: rgba(116, 39, 158, 0.8);
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--violet);
-  transform: translateY(-2px);
+  background: rgba(116, 39, 158, 1);
 }
 
 .toggle-form {
-  margin-top: 15px;
-  background-color: transparent;
-  color: var(--blanc);
-  border: 2px solid var(--blanc);
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .toggle-form:hover {
-  background-color: var(--blanc);
-  color: var(--noir);
+  color: #f1c40f;
 }
 
 h2 {
-  color: var(--blanc);
-  margin-bottom: 15px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Ajustements pour les sélecteurs et boutons pour améliorer l'accessibilité */
+input:focus, select:focus, button:focus {
+  outline: 2px solid #f1c40f;
+  outline-offset: 2px;
 }

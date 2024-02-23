@@ -8,6 +8,7 @@ import AjouterUtilisateur from './components/AjouterUtilisateur';
 import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
 import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
+import Footer from "./components/footer.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 
 function App() {
