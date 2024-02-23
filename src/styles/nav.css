@@ -1,0 +1,31 @@
+.navbar q {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.navbar q .nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar q .nav-links .nav-link {
+  display: block;
+  padding: 14px 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.navbar q .nav-links .nav-link:hover, 
+.navbar q .nav-links .nav-link.active {
+  background-color: #555;
+}

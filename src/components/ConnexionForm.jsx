@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import '../styles/ConnexionForm.scss';
+import '../styles/ConnexionForm.css';
 
 const ConnexionForm = () => {
     const [email, setEmail] = useState('');

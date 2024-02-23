@@ -1,7 +1,6 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0 ;
   text-align: center;
 }
 
@@ -39,4 +38,29 @@
 
 .read-the-docs {
   color: #888;
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+
+  li{
+      a{
+          text-decoration: none;
+          color: #000;
+          font-size: 1.5rem;
+          font-weight: bold;
+          padding: 10px 20px;
+          border-radius: 5px;
+          transition: all .3s ease;
+
+          &:hover{
+              background-color: #000;
+              color: #fff;
+          }
+      }
+  }
 }

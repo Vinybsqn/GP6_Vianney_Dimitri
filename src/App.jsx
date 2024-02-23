@@ -1,6 +1,6 @@
 // import {useState} from "react";
 import './App.css'
-import './styles/index.scss'
+import './index.css'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Nav from './components/nav'
 import ErrorPage from './pages/errorPage'
@@ -20,7 +20,6 @@ function App() {
         <Routes>
           <Route path="/" element={<ConnexionForm />} />
             <Route path="/home" element={<HomePage />} />
-            <Route path="/inscription" element={<ConnexionForm />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
