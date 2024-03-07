@@ -1,6 +1,6 @@
 // MatchPage.jsx
 import React from 'react';
-import "../styles/MatchPage.css";
+import "./../styles/MatchPage.css";
 
 const MatchPage = () => {
   return (
