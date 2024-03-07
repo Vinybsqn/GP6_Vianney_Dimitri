@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import '../styles/ProfilPage.css';
+import './../styles/ProfilPage.css';
 
 const ProfilPage = () => {
   const [userData, setUserData] = useState({});
