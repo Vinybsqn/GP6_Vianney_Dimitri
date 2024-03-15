@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import './../styles/ProfilPage.css';
 
 const ProfilPage = () => {
   const [userData, setUserData] = useState({});
@@ -40,17 +39,19 @@ const ProfilPage = () => {
   };
 
   return (
-    <div className="profil-page">
-      <h1>Profil de {userData.username}</h1>
-      <p>Email: {userData.email}</p>
-      <p>Nom: {userData.lastName}</p>
-      <p>Prénom: {userData.firstName}</p>
-      <p>Genre: {userData.genre}</p>
-      <p>Date de naissance: {userData.dob}</p>
-      <button onClick={handleSignOut} className="logout-button">
-        Déconnexion
-      </button>
-    </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-bleu to-violet">
+        <div className="p-10 backdrop-blur-lg bg-blanc/30 rounded-xl shadow-xl text-center space-y-4">
+          <h1 className="text-4xl font-bold text-blanc">Profil de {userData.username}</h1>
+          <p className="text-blanc">Email: {userData.email}</p>
+          <p className="text-blanc">Nom: {userData.lastName}</p>
+          <p className="text-blanc">Prénom: {userData.firstName}</p>
+          <p className="text-blanc">Genre: {userData.genre}</p>
+          <p className="text-blanc">Date de naissance: {userData.dob}</p>
+          <button onClick={handleSignOut} className="mt-4 px-4 py-2 bg-violet text-blanc font-semibold rounded hover:bg-violet-700 transition-colors">
+            Déconnexion
+          </button>
+        </div>
+      </div>
   );
 };
 

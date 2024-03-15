@@ -1,42 +1,62 @@
-// eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from "react-router-dom";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import './../styles/nav.css';
-
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { getAuth, signOut } from 'firebase/auth';
+import { FiMenu, FiX, FiHome, FiMessageSquare, FiUser, FiLogOut } from 'react-icons/fi';
 
 const Nav = () => {
-    const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setIsUserSignedIn(!!user);
-        });
-
-        return unsubscribe; // S'assurer de se désabonner lors du démontage du composant
-    }, [auth]);
-
+    const handleLogout = async () => {
+        console.log('Déconnexion en cours...');
+        try {
+            await signOut(auth);
+            console.log('Déconnexion réussie');
+            navigate('/login');
+        } catch (error) {
+            console.error('Erreur lors de la déconnexion', error);
+        }
+    };
 
     return (
-        <nav className="navbar">
-            <ul className="nav-links">
-                <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/home">Accueil</NavLink>
-                </li>
-                <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/match">Matchs</NavLink>
-                </li>
-                <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/chat">Chats</NavLink>
-                </li>
-                <li>
-                    <NavLink className={({ isActive }) => isActive ? "nav-link active" : "nav-link"} to="/profil">Profil</NavLink>
-                </li>
-                
-            </ul>
-        </nav>
+        <>
+            {/* Overlay */}
+            <div className={`fixed inset-0 z-40 ${isSidebarOpen ? '' : 'hidden'} bg-black bg-opacity-30 backdrop-blur-sm`} onClick={() => setIsSidebarOpen(false)} />
+
+            {/* Sidebar */}
+            <div className={`fixed top-0 left-0 w-64 h-full bg-white/10 backdrop-blur-lg  border-gray-200 p-4 z-50 transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`} onClick={(e) => e.stopPropagation()}>
+
+                {/* Close Button */}
+                <FiX className="text-3xl text-white cursor-pointer" onClick={() => setIsSidebarOpen(false)} />
+
+                {/* Navigation */}
+                <nav className="mt-8 flex flex-col justify-between h-full">
+                    <div>
+                        <NavLink to="/home" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                            <FiHome className="text-xl"/><span>Accueil</span>
+                        </NavLink>
+                        <NavLink to="/match" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                            <FiMessageSquare className="text-xl"/><span>Matchs</span>
+                        </NavLink>
+                        <NavLink to="/chat" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                            <FiMessageSquare className="text-xl"/><span>Chats</span>
+                        </NavLink>
+                        <NavLink to="/profil" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                            <FiUser className="text-xl"/><span>Profil</span>
+                        </NavLink>
+                        <button type="button" onClick={handleLogout} className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                            <FiLogOut className="text-xl"/><span>Déconnexion</span>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+
+            {/* Hamburger Menu Icon */}
+            {!isSidebarOpen && (
+                <FiMenu className="text-3xl text-white cursor-pointer fixed top-4 left-4 z-50" onClick={() => setIsSidebarOpen(true)}/>
+            )}
+        </>
     );
 };
 
