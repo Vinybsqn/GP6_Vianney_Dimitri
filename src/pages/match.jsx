@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import app from './../../firebase-config';
+import TinderCard from 'react-tinder-card';
 import '../styles/matchPage.css';
 
 const MatchSystem = () => {
     const [utilisateurs, setUtilisateurs] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [utilisateurActuelIndex, setUtilisateurActuelIndex] = useState(null);
     const db = getFirestore(app);
 
     useEffect(() => {
@@ -16,38 +17,38 @@ const MatchSystem = () => {
                 utilisateursTemp.push({ id: doc.id, ...doc.data() });
             });
             setUtilisateurs(utilisateursTemp);
+            setUtilisateurActuelIndex(utilisateursTemp.length > 0 ? 0 : null);
         };
         recupererUtilisateurs();
     }, [db]);
 
-    const handleLike = () => {
-        console.log(`Liked: ${utilisateurs[currentIndex].firstName} ${utilisateurs[currentIndex].lastName}`);
-        moveToNextUser();
+    const handleSwipe = (direction) => {
+        console.log(`${utilisateurs[utilisateurActuelIndex].firstName} was swiped ${direction}`);
+        // Passer à l'utilisateur suivant après un swipe
+        setUtilisateurActuelIndex(prevIndex => (prevIndex + 1) % utilisateurs.length);
     };
 
-    const handlePass = () => {
-        console.log(`Passed: ${utilisateurs[currentIndex].firstName} ${utilisateurs[currentIndex].lastName}`);
-        moveToNextUser();
-    };
+    // URL de l'image par défaut
+    const defaultImageUrl = "https://i.ibb.co/SBsB8h1/IMG-1611.jpg";
 
-    const moveToNextUser = () => {
-        setCurrentIndex(currentIndex < utilisateurs.length - 1 ? currentIndex + 1 : 0);
-    };
+    if (utilisateurActuelIndex === null) return <div className="flex justify-center items-center h-screen">Chargement...</div>;
 
-    if (utilisateurs.length === 0) return <div className="flex justify-center items-center h-screen">Chargement...</div>;
-
-    const { lastName, firstName, email } = utilisateurs[currentIndex];
+    const utilisateurActuel = utilisateurs[utilisateurActuelIndex];
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
             <h1 className="text-2xl font-bold mb-8">Echec&Match</h1>
-            <div className="mb-4">
-                <p>Nom : <span className="font-semibold">{lastName}</span></p>
-                <p>Prénom : <span className="font-semibold">{firstName}</span></p>
-            </div>
-            <div className="flex space-x-4">
-                <button onClick={handleLike} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300">Like</button>
-                <button onClick={handlePass} className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Pass</button>
+            <div className="cardContainer">
+                <TinderCard
+                    className="swipe"
+                    key={utilisateurActuel.id}
+                    onSwipe={(dir) => handleSwipe(dir)}
+                    preventSwipe={["up", "down"]}
+                >
+                    <div className="card" style={{ backgroundImage: `url(${utilisateurActuel.imageUrl || defaultImageUrl})` }}>
+                        <h3>{utilisateurActuel.firstName} {utilisateurActuel.lastName}</h3>
+                    </div>
+                </TinderCard>
             </div>
         </div>
     );
