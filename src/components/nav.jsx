@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
@@ -7,13 +8,15 @@ const Nav = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const navigate = useNavigate();
     const auth = getAuth();
+    const closeSidebar = () => setIsSidebarOpen(false);
+
 
     const handleLogout = async () => {
         console.log('Déconnexion en cours...');
         try {
             await signOut(auth);
             console.log('Déconnexion réussie');
-            navigate('/login');
+            navigate('/');
         } catch (error) {
             console.error('Erreur lors de la déconnexion', error);
         }
@@ -33,16 +36,16 @@ const Nav = () => {
                 {/* Navigation */}
                 <nav className="mt-8 flex flex-col justify-between h-full">
                     <div>
-                        <NavLink to="/home" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                        <NavLink to="/home" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiHome className="text-xl"/><span>Accueil</span>
                         </NavLink>
-                        <NavLink to="/match" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                        <NavLink to="/match" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiMessageSquare className="text-xl"/><span>Matchs</span>
                         </NavLink>
-                        <NavLink to="/chat" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                        <NavLink to="/chat" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiMessageSquare className="text-xl"/><span>Chats</span>
                         </NavLink>
-                        <NavLink to="/profil" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
+                        <NavLink to="/profil" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiUser className="text-xl"/><span>Profil</span>
                         </NavLink>
                         <button type="button" onClick={handleLogout} className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded">
