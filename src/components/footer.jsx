@@ -4,7 +4,7 @@ import { FaTwitter, FaInstagram ,FaTiktok} from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className="fixed inset-x-0 bottom-0 w-full bg-[#ffffff20] backdrop-blur-md border-t border-[#ffffff50] text-white py-6 px-4 text-center">
+    <footer className=" inset-x-0 bottom-0 w-full bg-[#ffffff20] backdrop-blur-md border-t border-[#ffffff50] text-white py-6 px-4 text-center">
       <p className="text-sm mb-4">Suivez-nous sur les réseaux sociaux</p>
       <div className="flex justify-center space-x-6">
         <a href="https://tiktok.com" target="_blank" rel="noreferrer" className="text-xl hover:text-blue-400">
