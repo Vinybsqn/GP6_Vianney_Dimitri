@@ -27,7 +27,6 @@ function App() {
                         <PrivateRoute>
                             <Nav />
                             <HomePage />
-                            <AfficherUtilisateur />
                         </PrivateRoute>
                     }
                 />
