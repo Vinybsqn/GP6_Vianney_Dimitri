@@ -7,15 +7,16 @@ import HomePage from './pages/home'
 import ProfilPage from './pages/profil'
 import ChatPage from './pages/chat'
 import MatchPage from './pages/match'
-import AjouterUtilisateur from './components/AjouterUtilisateur';
-import AfficherUtilisateurs from "./components/AfficherUtilisateur.jsx";
-import AuthentificationGoogle from "./components/AuthentificationGoogle.jsx";
 import ConnexionForm from "./components/ConnexionForm.jsx";
 import Footer from "./components/footer.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import { AuthProvider } from './components/AuthContext';
+import AfficherUtilisateur from "./components/AfficherUtilisateur.jsx";
+import Conversations from "./pages/Conversations.jsx";
 
 function App() {
     return (
+        <AuthProvider>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ConnexionForm />} />
@@ -26,6 +27,7 @@ function App() {
                         <PrivateRoute>
                             <Nav />
                             <HomePage />
+                            <AfficherUtilisateur />
                         </PrivateRoute>
                     }
                 />
@@ -42,9 +44,23 @@ function App() {
                     path="/chat"
                     element={
                         <PrivateRoute>
-                            <Nav />
                             <ChatPage />
                         </PrivateRoute>
+                    }
+                />
+                    <Route
+                        path="/conversations"
+                        element={
+                        <PrivateRoute>
+                            <Nav />
+                        <Conversations />
+                        </PrivateRoute>
+                    }
+                />
+                    <Route
+                        path="/chat/:conversationId"
+                        element={
+                            <ChatPage />
                     }
                 />
                 <Route
@@ -61,6 +77,7 @@ function App() {
             </Routes>
             <Footer />
         </BrowserRouter>
+            </AuthProvider>
     );
 }
 

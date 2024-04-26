@@ -42,8 +42,8 @@ const Nav = () => {
                         <NavLink to="/match" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiMessageSquare className="text-xl"/><span>Matchs</span>
                         </NavLink>
-                        <NavLink to="/chat" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
-                            <FiMessageSquare className="text-xl"/><span>Chats</span>
+                        <NavLink to="/conversations" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
+                            <FiMessageSquare className="text-xl"/><span>Conversations</span>
                         </NavLink>
                         <NavLink to="/profil" className="flex items-center space-x-2 p-2 hover:bg-white/50 rounded" onClick={closeSidebar}>
                             <FiUser className="text-xl"/><span>Profil</span>

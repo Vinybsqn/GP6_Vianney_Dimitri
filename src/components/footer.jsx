@@ -1,5 +1,4 @@
 import React from 'react';
-// Assurez-vous d'avoir installé `react-icons` pour utiliser les icônes sociales
 import { FaTwitter, FaInstagram ,FaTiktok} from 'react-icons/fa';
 
 const Footer = () => {

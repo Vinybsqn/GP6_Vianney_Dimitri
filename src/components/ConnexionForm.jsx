@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import './../styles/ConnexionForm.css';
+import logo from './../assets/LOGO.png';
 
 const ConnexionForm = () => {
     const [email, setEmail] = useState('');
@@ -67,17 +68,26 @@ const ConnexionForm = () => {
     };
 
     return (
+        // ajoute le logo au dessus du formulaire
+
         <div className="connexion-form">
+            <img src={logo} alt="Logo" className="logo" width={"300px"} height={"auto"}/>
             {isNewUser ? (
                 // Formulaire d'inscription
                 <form onSubmit={handleSignup} className="signup-form">
                     <h2>Inscription</h2>
-                    <input type="text" placeholder="Nom d'utilisateur" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    <input type="email" placeholder="Adresse e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <input type="text" placeholder="Nom" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                    <input type="text" placeholder="Prénom" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                    <input type="date" placeholder="Date de naissance" value={dob} onChange={(e) => setDob(e.target.value)} />
+                    <input type="text" placeholder="Nom d'utilisateur" value={username}
+                           onChange={(e) => setUsername(e.target.value)}/>
+                    <input type="email" placeholder="Adresse e-mail" value={email}
+                           onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Mot de passe" value={password}
+                           onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="text" placeholder="Nom" value={lastName}
+                           onChange={(e) => setLastName(e.target.value)}/>
+                    <input type="text" placeholder="Prénom" value={firstName}
+                           onChange={(e) => setFirstName(e.target.value)}/>
+                    <input type="date" placeholder="Date de naissance" value={dob}
+                           onChange={(e) => setDob(e.target.value)}/>
                     <select value={genre} onChange={(e) => setGenre(e.target.value)}>
                         <option value="">Sélectionnez votre genre</option>
                         <option value="homme">Homme</option>
@@ -91,8 +101,10 @@ const ConnexionForm = () => {
                 // Formulaire de connexion
                 <form onSubmit={handleLogin} className="login-form">
                     <h2>Connexion</h2>
-                    <input type="email" placeholder="Adresse e-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="email" placeholder="Adresse e-mail" value={email}
+                           onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Mot de passe" value={password}
+                           onChange={(e) => setPassword(e.target.value)}/>
                     <button type="submit">Se connecter</button>
                 </form>
             )}

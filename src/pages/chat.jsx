@@ -1,65 +1,82 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { getDatabase, ref, push, onValue, serverTimestamp } from 'firebase/database';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from './../../firebase-config';
+import MessageList from './../components/MessageList';
+import MessageInput from './../components/MessageInput';
 
 const ChatPage = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const [currentUserID, setCurrentUserID] = useState('');
     const bottomRef = useRef(null);
+    const { conversationId } = useParams();
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const db = getDatabase(app);
-        const messagesRef = ref(db, 'messages/');
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                setCurrentUserID(user.uid);
+            }
+        });
+    }, [auth]);
 
-        onValue(messagesRef, (snapshot) => {
-            const data = snapshot.val();
-            const loadedMessages = data ? Object.values(data) : [];
+    useEffect(() => {
+        if (!conversationId || !currentUserID) return;
+        const q = query(collection(db, `messages/${conversationId}/messages`), orderBy("timestamp"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const loadedMessages = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
             setMessages(loadedMessages);
             bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
         });
-    }, []);
+        return () => unsubscribe();
+    }, [conversationId, currentUserID, db]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (message.trim() === '') return;
+    const handleMessageChange = (event) => setMessage(event.target.value);
+    const handleMessageSubmit = async (event) => {
+        event.preventDefault();
+        if (!message.trim()) return console.error('Le message ne peut pas être vide.');
 
-        const db = getDatabase(app);
-        push(ref(db, 'messages/'), {
-            text: message,
-            timestamp: serverTimestamp(),
-            sender: 'user'
-        }).then(() => {
-            console.log('Message envoyé avec succès');
-        }).catch((error) => {
-            console.error('Erreur lors de l\'envoi du message :', error);
-        });
-        setMessage('');
+        try {
+            await addDoc(collection(db, `messages/${conversationId}/messages`), {
+                text: message,
+                timestamp: serverTimestamp(),
+                sender: currentUserID,
+            });
+            setMessage('');
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi du message:', error);
+        }
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-bleu to-violet p-4">
-            <div className="w-full max-w-lg h-80 overflow-auto mb-4 backdrop-filter backdrop-blur-lg bg-white/10 rounded-lg shadow-md">
-                {messages.map((msg, index) => (
-                    <div key={index} className={`flex justify-${msg.sender === 'user' ? 'start' : 'end'} mb-2`}>
-                        <div className={`bg-${msg.sender === 'user' ? 'bleu' : 'gray-200'} text-${msg.sender === 'user' ? 'white' : 'gray-800'} bg-opacity-40 backdrop-filter backdrop-blur-lg rounded-lg p-4 max-w-sm shadow-md`}>
-                            {msg.text}
-                        </div>
-                    </div>
-                ))}
-                <div ref={bottomRef}></div>
+        <div className="h-screen">
+            {/* Back Button */}
+            <div className="p-4 text-white">
+                <button onClick={() => navigate(-1)} className="inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span className="ml-2">Retour</span>
+                </button>
             </div>
-            <form onSubmit={handleSubmit} className="w-full max-w-lg overflow-auto mb-4 backdrop-filter backdrop-blur-lg bg-white/10 rounded-lg shadow-md">
-                <input
-                    type="text"
-                    className="message-input flex-grow rounded-full p-4 bg-gray-100 focus:outline-none placeholder-gray-500 text-black/80"
-                    placeholder="Tapez votre message ici..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                />
-                <button type="submit" className="send-button bg-bleu text-white rounded-full px-6 py-3 hover:bg-blue-600 transition-colors">Envoyer</button>
-            </form>
+
+            {/* Message List */}
+            <div className="flex-auto items-center justify-center overflow-hidden px-4 py-2 space-y-4">
+                <MessageList messages={messages} currentUserID={currentUserID} bottomRef={bottomRef} />
+            </div>
+
+            {/* Message Input */}
+            <div className="p-4 backdrop-blur-md flex items-center justify-center flex-col px-4 py-2 space-y-4">
+                <MessageInput message={message} onMessageChange={handleMessageChange} onMessageSubmit={handleMessageSubmit} />
+            </div>
         </div>
     );
+
 };
+
 
 export default ChatPage;
