@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from 'chart.js';
 import logo from './../assets/LOGO.png';
+import logo_lol from './../assets/logo_lol.jpeg';
+import logo_fortnite from './../assets/logo_fortnite.avif';
+import logo_minecraft from './../assets/logo_minecraft.avif';
+import logo_rocket_league from './../assets/logo_rocket_league.jpg';
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 const HomePage = () => {
@@ -27,10 +31,26 @@ const HomePage = () => {
             legend: {
                 display: true,
                 position: 'top',
+                labels: {
+                    color: 'white',  // Make the chart legend text white
+                },
             },
             title: {
                 display: true,
                 text: 'Croissance des Membres sur l\'Année',
+                color: 'white',  // Make the chart title text white
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: 'white',  // Make the x-axis labels white
+                },
+            },
+            y: {
+                ticks: {
+                    color: 'white',  // Make the y-axis labels white
+                },
             },
         },
     };
@@ -45,16 +65,20 @@ const HomePage = () => {
                 <p className="text-lg text-center">Trouvez des partenaires de jeu, participez à des événements et améliorez vos compétences.</p>
             
                 <section className="bg-white/10 backdrop-blur-md p-10 rounded-3xl shadow-2xl border border-white/20 w-full max-w-4xl">
-                    <h2 className="text-4xl font-bold mb-4">Découvrez de nouveaux jeux</h2>
-                    <p className="text-lg mb-6">Explorez une large sélection de jeux et trouvez des joueurs ayant des intérêts similaires.</p>
-                    <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/2 bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
-                            <h3 className="text-2xl font-semibold mb-2">Jeu 1</h3>
-                            <p>Description du jeu 1. Découvrez des stratégies uniques et connectez-vous avec d'autres joueurs.</p>
+                    <h2 className="text-4xl font-bold mb-4 text-white">Découvrez les jeux du moment</h2>
+                    <p className="text-lg mb-6 text-white">Explorez une large sélection de jeux et trouvez des joueurs ayant des intérêts similaires.</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                            <img src={logo_lol} alt="Jeu 1" className="w-full h-32 object-cover rounded-lg mb-4" />
                         </div>
-                        <div className="w-full sm:w-1/2 bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
-                            <h3 className="text-2xl font-semibold mb-2">Jeu 2</h3>
-                            <p>Description du jeu 2. Explorez des mondes fantastiques et défiez vos amis.</p>
+                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                            <img src={logo_fortnite} alt="Jeu 2" className="w-full h-32 object-cover rounded-lg mb-4" />
+                        </div>
+                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                            <img src={logo_minecraft} alt="Jeu 3" className="w-full h-32 object-cover rounded-lg mb-4" />
+                        </div>
+                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                            <img src={logo_rocket_league} alt="Jeu 4" className="w-full h-32 object-cover rounded-lg mb-4" />
                         </div>
                     </div>
                 </section>
