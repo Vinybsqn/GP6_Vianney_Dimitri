@@ -18,6 +18,13 @@
   /* Un fond avec dégradé */
 }
 
+.avatars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  justify-content: center;
+}
+
 form {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);

@@ -5,6 +5,17 @@ import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, on
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import './../styles/ConnexionForm.css';
 import logo from './../assets/LOGO.png';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
+
+const avatarPaths = [
+    "avatars/Avatar femme (1).png",
+    "avatars/Avatar femme.png",
+    "avatars/Avatar utilisateur (1).png",
+    "avatars/Avatar utilisateur (2).png",
+    "avatars/Avatar utilisateur.png"
+];
+
 
 const ConnexionForm = () => {
     const [email, setEmail] = useState('');
@@ -14,12 +25,30 @@ const ConnexionForm = () => {
     const [lastName, setLastName] = useState('');
     const [dob, setDob] = useState('');
     const [genre, setGenre] = useState('');
+    const [avatar, setAvatar] = useState('');
     const [isNewUser, setIsNewUser] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-
+    const [avatarOptions, setAvatarOptions] = useState([]);
     const navigate = useNavigate();
     const auth = getAuth();
     const db = getFirestore();
+    const storage = getStorage();
+
+
+    useEffect(() => {
+        const fetchAvatars = async () => {
+            const urls = await Promise.all(
+                avatarPaths.map(async (path) => {
+                    const url = await getDownloadURL(ref(storage, path));
+                    return url;
+                })
+            );
+            setAvatarOptions(urls);
+            setAvatar(urls[0]); // Par défaut, le premier avatar
+        };
+
+        fetchAvatars();
+    }, [storage]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -172,27 +201,49 @@ const ConnexionForm = () => {
                         <option value="femme">Femme</option>
                         <option value="autre">Autre</option>
                     </select>
-                    <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
-                        S'inscrire
-                    </button>
+                    <div className="avatar-selection">
+                        <p>Sélectionnez votre avatar:</p>
+                        <div className="avatars">
+                            {avatarOptions.map((url, index) => (
+                                <img
+                                    key={index}
+                                    src={url}
+                                    alt={`Avatar ${index + 1}`}
+                                    className={`avatar ${avatar === url ? 'selected' : ''}`}
+                                    onClick={() => setAvatar(url)}
+                                    style={{
+                                        cursor: 'pointer',
+                                        width: '50px',
+                                        height: '50px',
+                                        margin: '5px',
+                                        border: avatar === url ? '2px solid blue' : 'none'
+                                    }}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                        <button type="submit"
+                                className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+                            S'inscrire
+                        </button>
                 </form>
-            ) : (
+                ) : (
                 <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold text-center">Connexion</h2>
-                    <input
-                        type="email"
-                        placeholder="Adresse e-mail"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Mot de passe"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+            <h2 className="text-2xl font-bold text-center">Connexion</h2>
+            <input
+                type="email"
+                placeholder="Adresse e-mail"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
+                required
+            />
+            <input
+                type="password"
+                placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">

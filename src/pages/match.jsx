@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import {getFirestore, collection, getDocs, doc, setDoc, serverTimestamp, getDoc} from 'firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { getFirestore, collection, getDocs, doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import app from './../../firebase-config';
 import TinderCard from 'react-tinder-card';
@@ -18,51 +18,50 @@ const MatchSystem = () => {
       const querySnapshot = await getDocs(collection(db, 'utilisateurs'));
       let utilisateursTemp = [];
       querySnapshot.forEach((doc) => {
-        if (doc.id !== currentUser.uid) {  // Filter out the current user from the list
+        if (doc.id !== currentUser.uid) {  // Exclure l'utilisateur actuel de la liste
           utilisateursTemp.push({ id: doc.id, ...doc.data() });
         }
       });
       setUtilisateurs(utilisateursTemp);
     };
     recupererUtilisateurs();
-  }, [db]);
+  }, [db, currentUser]);
 
   const handleSwipe = async (direction, swipedUserId) => {
     console.log(`${utilisateurs[utilisateurActuelIndex]?.firstName} was swiped ${direction}`);
     if (direction === 'right') {
       try {
-        // Check if there's already a 'like' from the other user
+        // Vérifiez s'il y a déjà un 'like' de l'autre utilisateur
         const docRef = doc(db, "matches", `${swipedUserId}_${currentUser.uid}`);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          // Match exists, create conversation
+          // Le match existe, créez une conversation
           const conversationId = `${currentUser.uid}_${swipedUserId}`;
           await setDoc(doc(db, "conversations", conversationId), {
             participants: [currentUser.uid, swipedUserId],
             timestamp: serverTimestamp(),
           });
           await setDoc(doc(db, `conversations/${conversationId}/messages`, "1"), {
-            text: "You've matched! Say hi!",
+            text: "Vous avez un match ! Dites bonjour !",
             timestamp: serverTimestamp(),
             sender: "system"
           });
 
-          // Navigate to the chat page of the newly created conversation
+          // Naviguer vers la page de chat de la conversation nouvellement créée
           navigate(`/chat/${conversationId}`);
         } else {
-          // No match yet, save the like
+          // Pas encore de match, enregistrez le like
           await setDoc(doc(db, "matches", `${currentUser.uid}_${swipedUserId}`), {
             liked: true
           });
         }
       } catch (error) {
-        console.error('Error handling swipe:', error);
+        console.error('Erreur lors du swipe :', error);
       }
     }
-    // Move to the next user regardless of whether there was a match or not
+    // Passer à l'utilisateur suivant qu'il y ait un match ou non
     setUtilisateurActuelIndex((prevIndex) => (prevIndex + 1) % utilisateurs.length);
   };
-
 
   const defaultImageUrl = 'https://i.ibb.co/SBsB8h1/IMG-1611.jpg';
 
@@ -80,17 +79,17 @@ const MatchSystem = () => {
               onSwipe={(dir) => handleSwipe(dir, utilisateurActuel.id)}
               preventSwipe={['up', 'down']}
           >
-            <div className="card" style={{ backgroundImage: `url(${utilisateurActuel.imageUrl || defaultImageUrl})` }}>
+            <div className="card" style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
               <h3>{utilisateurActuel.firstName} {utilisateurActuel.lastName}</h3>
             </div>
           </TinderCard>
         </div>
         <div className="actions">
           <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton">
-            <i className="fas fa-times"></i> Pass
+            <i className="fas fa-times"></i> Passer
           </button>
           <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton">
-            <i className="fas fa-heart"></i> Like
+            <i className="fas fa-heart"></i> Aimer
           </button>
         </div>
       </div>

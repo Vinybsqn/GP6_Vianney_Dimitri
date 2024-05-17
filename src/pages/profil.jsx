@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import {getFirestore, doc, getDoc, updateDoc} from "firebase/firestore";
-import {FiEdit2} from "react-icons/fi";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { FiEdit2 } from "react-icons/fi";
 
 const ProfilPage = () => {
   const [userData, setUserData] = useState({});
@@ -11,7 +11,6 @@ const ProfilPage = () => {
   const auth = getAuth();
   const db = getFirestore();
   const [editField, setEditField] = useState("");
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -53,11 +52,13 @@ const ProfilPage = () => {
     }
   };
 
-
   return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-bleu to-violet">
         <div className="p-10 backdrop-blur-lg bg-blanc/30 rounded-xl shadow-xl text-center space-y-4">
           <h1 className="text-4xl font-bold text-blanc">Profil de {userData.username}</h1>
+          <div className="flex items-center justify-center space-x-2">
+            <img src={userData.avatar} alt="Avatar" className="rounded-full w-24 h-24 object-cover" />
+          </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "email" ? (
                 <input
@@ -68,10 +69,10 @@ const ProfilPage = () => {
                     autoFocus
                 />
             ) : (
-                <span className=" text-blanc">{`E-Mail: ${userData.email}`}</span>
+                <span className="text-blanc">{`E-Mail: ${userData.email}`}</span>
             )}
             <FiEdit2 onClick={() => setEditField("email")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300"/>
+                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "lastName" ? (
@@ -83,12 +84,11 @@ const ProfilPage = () => {
                     autoFocus
                 />
             ) : (
-                <span className=" text-blanc">{`Nom: ${userData.lastName}`}</span>
+                <span className="text-blanc">{`Nom: ${userData.lastName}`}</span>
             )}
             <FiEdit2 onClick={() => setEditField("lastName")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300"/>
+                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
-
           <div className="flex items-center justify-center space-x-2">
             {editField === "firstName" ? (
                 <input
@@ -99,12 +99,11 @@ const ProfilPage = () => {
                     autoFocus
                 />
             ) : (
-                <span className=" text-blanc">{`Prénom: ${userData.firstName}`}</span>
+                <span className="text-blanc">{`Prénom: ${userData.firstName}`}</span>
             )}
             <FiEdit2 onClick={() => setEditField("firstName")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300"/>
+                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
-
           <div className="flex items-center justify-center space-x-2">
             {editField === "genre" ? (
                 <input
@@ -115,12 +114,11 @@ const ProfilPage = () => {
                     autoFocus
                 />
             ) : (
-                <span className=" text-blanc">{`genre: ${userData.genre}`}</span>
+                <span className="text-blanc">{`Genre: ${userData.genre}`}</span>
             )}
             <FiEdit2 onClick={() => setEditField("genre")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300"/>
+                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
-
           <div className="flex items-center justify-center space-x-2">
             {editField === "dob" ? (
                 <input
@@ -131,10 +129,10 @@ const ProfilPage = () => {
                     autoFocus
                 />
             ) : (
-                <span className=" text-blanc">{`Date de naissance: ${userData.dob}`}</span>
+                <span className="text-blanc">{`Date de naissance: ${userData.dob}`}</span>
             )}
             <FiEdit2 onClick={() => setEditField("dob")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300"/>
+                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <button onClick={handleSignOut}
                   className="mt-4 px-4 py-2 bg-violet text-blanc font-semibold rounded hover:bg-blue-600 transition-colors">
