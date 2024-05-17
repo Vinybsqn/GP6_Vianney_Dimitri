@@ -100,17 +100,25 @@ const HomePage = () => {
                 </section>
 
                 <section className="bg-white/10 backdrop-blur-md p-10 rounded-3xl shadow-2xl border border-white/20 w-full max-w-4xl">
-                    <h2 className="text-4xl font-bold mb-4">Apprenez avec nos tutoriels</h2>
+                    <h2 className="text-4xl font-bold mb-4">Nos embassadeurs</h2>
                     <p className="text-lg mb-6">Accédez à des tutoriels et des guides pour améliorer vos compétences et découvrir de nouvelles stratégies.</p>
                     <div className="flex flex-wrap gap-4">
-                        <div className="w-full sm:w-1/2 bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
-                            <h3 className="text-2xl font-semibold mb-2">Tutoriel 1</h3>
-                            <p>Guide complet pour les débutants. Apprenez les bases et commencez à jouer dès aujourd'hui.</p>
-                        </div>
-                        <div className="w-full sm:w-1/2 bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
-                            <h3 className="text-2xl font-semibold mb-2">Tutoriel 2</h3>
-                            <p>Stratégies avancées pour les joueurs expérimentés. Améliorez vos compétences et dominez le jeu.</p>
-                        </div>
+                        <Link to="/ambassadors" className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10 w-full sm:w-1/2 lg:w-1/4">
+                            <h3 className="text-2xl font-bold mb-2">Alex</h3>
+                            <p className="text-lg">Joueur de League of Legends</p>
+                        </Link>
+                        <Link to="/ambassadors" className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10 w-full sm:w-1/2 lg:w-1/4">
+                            <h3 className="text-2xl font-bold mb-2">Marie</h3>
+                            <p className="text-lg">Joueuse de Fortnite</p>
+                        </Link>
+                        <Link to="/ambassadors" className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10 w-full sm:w-1/2 lg:w-1/4">
+                            <h3 className="text-2xl font-bold mb-2">Lucas</h3>
+                            <p className="text-lg">Joueur de Minecraft</p>
+                        </Link>
+                        <Link to="/ambassadors" className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10 w-full sm:w-1/2 lg:w-1/4">
+                            <h3 className="text-2xl font-bold mb-2">Sarah</h3>
+                            <p className="text-lg">Joueuse de Rocket League</p>
+                        </Link>
                     </div>
                 </section>
 
