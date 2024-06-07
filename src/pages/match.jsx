@@ -81,12 +81,12 @@ const MatchSystem = () => {
 
   const defaultImageUrl = 'https://i.ibb.co/SBsB8h1/IMG-1611.jpg';
 
-  if (utilisateurs.length === 0) return <div className="flex justify-center items-center h-screen">Chargement...</div>;
+  if (utilisateurs.length === 0) return <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">Chargement...</div>;
 
   const utilisateurActuel = utilisateurs[utilisateurActuelIndex];
 
   return (
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
         <h1 className="text-2xl font-bold mb-8">Echec&Match</h1>
         <div className="relative w-11/12 max-w-xs h-96">
           <TinderCard
