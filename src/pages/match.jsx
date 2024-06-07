@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs, doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 import app from './../../firebase-config';
 import TinderCard from 'react-tinder-card';
 import { useNavigate } from 'react-router-dom';
@@ -10,10 +11,25 @@ const MatchSystem = () => {
   const [utilisateurActuelIndex, setUtilisateurActuelIndex] = useState(0);
   const db = getFirestore(app);
   const auth = getAuth(app);
+  const storage = getStorage(app);
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
 
   useEffect(() => {
+    const fetchAvatars = async (users) => {
+      const usersWithAvatars = await Promise.all(
+          users.map(async (user) => {
+            if (user.avatar) {
+              const avatarRef = ref(storage, user.avatar);
+              const avatar = await getDownloadURL(avatarRef).catch(() => defaultImageUrl);
+              return { ...user, avatar };
+            }
+            return { ...user, avatar: defaultImageUrl };
+          })
+      );
+      setUtilisateurs(usersWithAvatars);
+    };
+
     const recupererUtilisateurs = async () => {
       const querySnapshot = await getDocs(collection(db, 'utilisateurs'));
       let utilisateursTemp = [];
@@ -22,10 +38,10 @@ const MatchSystem = () => {
           utilisateursTemp.push({ id: doc.id, ...doc.data() });
         }
       });
-      setUtilisateurs(utilisateursTemp);
+      fetchAvatars(utilisateursTemp);
     };
     recupererUtilisateurs();
-  }, [db, currentUser]);
+  }, [db, currentUser, storage]);
 
   const handleSwipe = async (direction, swipedUserId) => {
     console.log(`${utilisateurs[utilisateurActuelIndex]?.firstName} was swiped ${direction}`);
@@ -72,24 +88,26 @@ const MatchSystem = () => {
   return (
       <div className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-2xl font-bold mb-8">Echec&Match</h1>
-        <div className="cardContainer">
+        <div className="relative w-11/12 max-w-xs h-96">
           <TinderCard
-              className="swipe"
+              className="absolute w-full h-full"
               key={utilisateurActuel.id}
               onSwipe={(dir) => handleSwipe(dir, utilisateurActuel.id)}
               preventSwipe={['up', 'down']}
           >
-            <div className="card" style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
+            <div
+                className="relative w-full h-full bg-cover bg-center rounded-xl shadow-lg flex items-end justify-center p-4 text-white text-lg font-bold"
+                style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
               <h3>{utilisateurActuel.firstName} {utilisateurActuel.lastName}</h3>
             </div>
           </TinderCard>
         </div>
-        <div className="actions">
-          <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton">
-            <i className="fas fa-times"></i> Passer
+        <div className="flex justify-center mt-4 space-x-4">
+          <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton p-3 bg-white text-red-500 rounded-full shadow-md hover:scale-110 transition-transform">
+            <i className="fas fa-times text-xl"></i>
           </button>
-          <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton">
-            <i className="fas fa-heart"></i> Aimer
+          <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton p-3 bg-white text-green-500 rounded-full shadow-md hover:scale-110 transition-transform">
+            <i className="fas fa-heart text-xl"></i>
           </button>
         </div>
       </div>

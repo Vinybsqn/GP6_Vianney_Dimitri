@@ -111,6 +111,7 @@ const ConnexionForm = () => {
                 lastName,
                 dob,
                 genre,
+                avatar,
             });
             navigate('/home');
         } catch (error) {
@@ -222,28 +223,28 @@ const ConnexionForm = () => {
                             ))}
                         </div>
                     </div>
-                        <button type="submit"
-                                className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
-                            S'inscrire
-                        </button>
+                    <button type="submit"
+                            className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+                        S'inscrire
+                    </button>
                 </form>
-                ) : (
+            ) : (
                 <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold text-center">Connexion</h2>
-            <input
-                type="email"
-                placeholder="Adresse e-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
-                required
-            />
-            <input
-                type="password"
-                placeholder="Mot de passe"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded"
+                    <h2 className="text-2xl font-bold text-center">Connexion</h2>
+                    <input
+                        type="email"
+                        placeholder="Adresse e-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded"
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Mot de passe"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
