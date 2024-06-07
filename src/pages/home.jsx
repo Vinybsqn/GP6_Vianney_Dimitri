@@ -67,6 +67,10 @@ const HomePage = () => {
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        swipe: true,
+        touchMove: true,
         responsive: [
             {
                 breakpoint: 1024,
@@ -88,7 +92,7 @@ const HomePage = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-800 via-purple-800 to-gray-900 text-white p-6">
+        <div className="flex flex-col min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500 text-white p-6">
             <main className="flex flex-col items-center gap-12 flex-grow">
 
             <img src={logo} alt="Logo" className="mb-6 w-72 h-auto"/>
