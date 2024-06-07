@@ -200,10 +200,10 @@ const ConnexionForm = () => {
                         className="w-full p-2 border border-gray-300 rounded text-black-500"
                         required
                     >
-                        <option value="">Sélectionnez votre genre *</option>
-                        <option value="homme">Homme</option>
-                        <option value="femme">Femme</option>
-                        <option value="autre">Autre</option>
+                        <option className="text-black-500"value="">Sélectionnez votre genre *</option>
+                        <option className="text-black-500"value="homme">Homme</option>
+                        <option className="text-black-500"value="femme">Femme</option>
+                        <option className="text-black-500"value="autre">Autre</option>
                     </select>
                     <div className="avatar-selection">
                         <p>Sélectionnez votre avatar*:</p>
@@ -252,7 +252,6 @@ const ConnexionForm = () => {
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
-                    <p className='text-sm text-gray-500'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         Se connecter
                     </button>
