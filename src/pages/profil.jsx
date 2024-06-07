@@ -53,7 +53,7 @@ const ProfilPage = () => {
   };
 
   return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-bleu to-violet">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-bleu to-violet bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
         <div className="p-10 backdrop-blur-lg bg-blanc/30 rounded-xl shadow-xl text-center space-y-4">
           <h1 className="text-4xl font-bold text-blanc">Profil de {userData.username}</h1>
           <div className="flex items-center justify-center space-x-2">

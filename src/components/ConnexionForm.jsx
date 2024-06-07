@@ -137,7 +137,7 @@ const ConnexionForm = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
             <img src={logo} alt="Logo" className="mb-6 w-72 h-auto"/>
             {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
             {isNewUser ? (

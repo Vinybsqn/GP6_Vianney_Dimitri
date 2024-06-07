@@ -47,7 +47,7 @@ const Conversations = () => {
     }, [currentUserID, db]);
 
     return (
-        <div className="h-screen p-4">
+        <div className="h-screen p-4 bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
             <h1 className="text-2xl font-bold text-center mb-6">Conversations</h1>
             <div className="mx-auto max-w-md rounded shadow-lg p-4 bg-white/10 backdrop-blur-md overflow-hidden">
                 <ul>
