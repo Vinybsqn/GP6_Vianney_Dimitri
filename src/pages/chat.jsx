@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from "firebase/firestore";
+import { getFirestore, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, doc, getDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import app from './../../firebase-config';
 import MessageList from './../components/MessageList';
@@ -10,6 +10,7 @@ const ChatPage = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [currentUserID, setCurrentUserID] = useState('');
+    const [otherUserName, setOtherUserName] = useState('');
     const bottomRef = useRef(null);
     const { conversationId } = useParams();
     const db = getFirestore(app);
@@ -26,13 +27,34 @@ const ChatPage = () => {
 
     useEffect(() => {
         if (!conversationId || !currentUserID) return;
-        const q = query(collection(db, `messages/${conversationId}/messages`), orderBy("timestamp"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const loadedMessages = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-            setMessages(loadedMessages);
-            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-        });
-        return () => unsubscribe();
+
+        const fetchMessages = async () => {
+            const q = query(collection(db, `messages/${conversationId}/messages`), orderBy("timestamp"));
+            const unsubscribe = onSnapshot(q, (querySnapshot) => {
+                const loadedMessages = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+                setMessages(loadedMessages);
+                bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+            });
+            return () => unsubscribe();
+        };
+
+        const fetchOtherUserName = async () => {
+            const conversationRef = doc(db, 'conversations', conversationId);
+            const conversationSnapshot = await getDoc(conversationRef);
+            if (conversationSnapshot.exists()) {
+                const otherUserID = conversationSnapshot.data().users.find(id => id !== currentUserID);
+                if (otherUserID) {
+                    const userRef = doc(db, 'utilisateurs', otherUserID);
+                    const userSnapshot = await getDoc(userRef);
+                    if (userSnapshot.exists()) {
+                        setOtherUserName(userSnapshot.data().displayName);
+                    }
+                }
+            }
+        };
+
+        fetchMessages();
+        fetchOtherUserName();
     }, [conversationId, currentUserID, db]);
 
     const handleMessageChange = (event) => setMessage(event.target.value);
@@ -62,6 +84,11 @@ const ChatPage = () => {
                     </svg>
                     <span className="ml-2">Retour</span>
                 </button>
+            </div>
+
+            {/* Conversation Title */}
+            <div className="p-4 text-center">
+                {otherUserName && <h2 className="text-lg font-bold">Discussion avec {otherUserName}</h2>}
             </div>
 
             {/* Message List */}

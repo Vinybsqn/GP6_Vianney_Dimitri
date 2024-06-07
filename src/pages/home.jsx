@@ -221,16 +221,16 @@ const HomePage = () => {
                         et votre passion pour le gaming.<br></br><br></br>
                         Echec&Match, vous permet de rencontrer des gamers et gameuses de tous horizons. Grâce à notre système de matchmaking gaming,
                         vous pouvez facilement trouver des partenaires pour jouer en équipe. Que vous cherchiez des coéquipiers pour des parties compétitives
-                        ou des amis pour des sessions de jeu décontractées, notre plateforme est conçue pour répondre à vos besoins.<br></br>
+                        ou des amis pour des sessions de jeu décontractées, notre plateforme est conçue pour répondre à vos besoins.<br></br><br></br>
                         En jouant en équipe, vous pouvez améliorer vos compétences, élaborer des stratégies plus efficaces et vivre une expérience de jeu
                         plus enrichissante. Sur notre application de rencontre gamer, Echec&Match, vous pouvez créer un profil détaillé, spécifier vos jeux préférés,
                         votre niveau de compétence et vos disponibilités. Cela permet à notre système de matchmaking gaming de vous mettre en relation avec
-                        des joueurs qui correspondent à votre style de jeu et à vos préférences.<br></br>
+                        des joueurs qui correspondent à votre style de jeu et à vos préférences.<br></br><br></br>
                         La diversité de notre communauté est l'un de nos plus grands atouts. Echec&Match, vous offre la possibilité d'élargir
                         votre cercle de connaissances et de créer des souvenirs inoubliables avec d'autres passionnés de jeux vidéo.<br></br>
                         Notre application offre une expérience utilisateur intuitive et agréable. Avec des fonctionnalités avancées de recherche et de filtrage,
                         trouver des partenaires de jeu n'a jamais été aussi simple. Rejoignez notre communauté aujourd'hui et commencez à profiter
-                        de tous les avantages de jouer en équipe.<br></br>
+                        de tous les avantages de jouer en équipe.<br></br><br></br>
                         N'attendez plus pour découvrir tous les avantages. Que vous souhaitiez améliorer vos compétences, trouver des amis
                         ou simplement éviter de jouer seul, notre plateforme est là pour vous. Rejoignez-nous dès maintenant et vivez des aventures
                         avec d'autres gamers passionnés grâce à Echec&Match.</p>
