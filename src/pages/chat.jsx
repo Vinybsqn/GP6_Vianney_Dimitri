@@ -75,8 +75,6 @@ const ChatPage = () => {
             </div>
         </div>
     );
-
 };
-
 
 export default ChatPage;
