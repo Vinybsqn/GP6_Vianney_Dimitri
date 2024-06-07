@@ -145,7 +145,7 @@ const ConnexionForm = () => {
                     <h2 className="text-2xl font-bold text-center">Inscription</h2>
                     <input
                         type="text"
-                        placeholder="Nom d'utilisateur"
+                        placeholder="Nom d'utilisateur *"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
@@ -153,23 +153,26 @@ const ConnexionForm = () => {
                     />
                     <input
                         type="email"
-                        placeholder="Adresse e-mail"
+                        placeholder="Adresse e-mail *"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
-                    <input
-                        type="password"
-                        placeholder="Mot de passe"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
-                        required
-                    />
-                    <input
+                    <div className="w-full p-2 border border-gray-300 rounded mb-1">
+    <input
+        type="password"
+        placeholder="Mot de passe *"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="w-full h-10 mb-0"
+        required
+    />
+    <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
+</div>
+    <input
                         type="text"
-                        placeholder="Nom"
+                        placeholder="Nom *"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
@@ -177,7 +180,7 @@ const ConnexionForm = () => {
                     />
                     <input
                         type="text"
-                        placeholder="Prénom"
+                        placeholder="Prénom *"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
@@ -185,7 +188,7 @@ const ConnexionForm = () => {
                     />
                     <input
                         type="date"
-                        placeholder="Date de naissance"
+                        placeholder="Date de naissance *"
                         value={dob}
                         onChange={(e) => setDob(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
@@ -194,16 +197,16 @@ const ConnexionForm = () => {
                     <select
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black-500"
                         required
                     >
-                        <option value="">Sélectionnez votre genre</option>
+                        <option value="">Sélectionnez votre genre *</option>
                         <option value="homme">Homme</option>
                         <option value="femme">Femme</option>
                         <option value="autre">Autre</option>
                     </select>
                     <div className="avatar-selection">
-                        <p>Sélectionnez votre avatar:</p>
+                        <p>Sélectionnez votre avatar*:</p>
                         <div className="avatars">
                             {avatarOptions.map((url, index) => (
                                 <img
@@ -223,6 +226,8 @@ const ConnexionForm = () => {
                             ))}
                         </div>
                     </div>
+                    <p className='text-xs text-black-500 mt-0'>* champs obligatoires</p>
+
                     <button type="submit"
                             className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         S'inscrire
@@ -233,7 +238,7 @@ const ConnexionForm = () => {
                     <h2 className="text-2xl font-bold text-center">Connexion</h2>
                     <input
                         type="email"
-                        placeholder="Adresse e-mail"
+                        placeholder="Adresse e-mail*"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
@@ -241,16 +246,17 @@ const ConnexionForm = () => {
                     />
                     <input
                         type="password"
-                        placeholder="Mot de passe"
+                        placeholder="Mot de passe*"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded"
                         required
                     />
+                    <p className='text-sm text-gray-500'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         Se connecter
                     </button>
-                </form>
+                    </form>
             )}
             <button
                 onClick={() => setIsNewUser(!isNewUser)}
