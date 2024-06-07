@@ -206,7 +206,7 @@ const ConnexionForm = () => {
                         <option className="text-black-500"value="autre">Autre</option>
                     </select>
                     <div className="avatar-selection">
-                        <p>Sélectionnez votre avatar*:</p>
+                        <p>Sélectionnez votre avatar : *</p>
                         <div className="avatars">
                             {avatarOptions.map((url, index) => (
                                 <img
