@@ -9,11 +9,12 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 
 const avatarPaths = [
-    "avatars/Avatar femme (1).png",
-    "avatars/Avatar femme.png",
-    "avatars/Avatar utilisateur (1).png",
-    "avatars/Avatar utilisateur (2).png",
-    "avatars/Avatar utilisateur.png"
+    "avatars/image (1).png",
+    "avatars/image (2).png",
+    "avatars/image (3).png",
+    "avatars/image (4).png",
+    "avatars/image (5).png",
+    "avatars/image.png"
 ];
 
 

@@ -75,7 +75,8 @@ const ChatPage = () => {
     };
 
     return (
-        <div className="h-screen">
+
+        <div className="h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
             {/* Back Button */}
             <div className="p-4 text-white">
                 <button onClick={() => navigate(-1)} className="inline-flex items-center">

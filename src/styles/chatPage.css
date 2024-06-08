@@ -1,4 +1,3 @@
-/* styles/chatPage.css */
 .chat-container {
     display: flex;
     flex-direction: column;
@@ -14,7 +13,6 @@
     margin-bottom: 20px;
     overflow-y: auto;
     height: 400px;
-    /* Ajustez selon vos besoins */
     display: flex;
     flex-direction: column;
     margin-top: -70px;
