@@ -168,10 +168,6 @@ const ConnexionForm = () => {
                             className="w-full h-10 mb-0"
                             required
                         />
-                        <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
-                            className="w-full h-10 mb-0 text-black"
-                            required
-                        />
                         <p className='text-xs text-gray-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
                     </div>
                     <input
