@@ -1,9 +1,12 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged
+} from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import './../styles/ConnexionForm.css';
 import logo from './../assets/LOGO.png';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
@@ -42,7 +45,7 @@ const ConnexionForm = () => {
                 })
             );
             setAvatarOptions(urls);
-            setAvatar(urls[0]); // Par défaut, le premier avatar
+            setAvatar(urls[0]);
         };
 
         fetchAvatars();
@@ -59,7 +62,7 @@ const ConnexionForm = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setErrorMessage(''); // Clear previous error message
+        setErrorMessage('');
         try {
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/home');
@@ -90,9 +93,8 @@ const ConnexionForm = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        setErrorMessage(''); // Clear previous error message
+        setErrorMessage('');
 
-        // Password validation
         const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
         if (!passwordPattern.test(password)) {
             setErrorMessage('Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre.');
@@ -136,17 +138,17 @@ const ConnexionForm = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
-            <img src={logo} alt="Logo" className="mb-6 w-72 h-auto"/>
+            <img src={logo} alt="Logo" className="mb-6 w-72 h-auto" />
             {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
             {isNewUser ? (
-                <form onSubmit={handleSignup} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold text-center">Inscription</h2>
+                <form onSubmit={handleSignup} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg bg-white">
+                    <h2 className="text-2xl font-bold text-center text-black">Inscription</h2>
                     <input
                         type="text"
                         placeholder="Nom d'utilisateur *"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -154,7 +156,7 @@ const ConnexionForm = () => {
                         placeholder="Adresse e-mail *"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <div className="w-full p-2 border border-gray-300 rounded mb-1">
@@ -167,13 +169,17 @@ const ConnexionForm = () => {
                             required
                         />
                         <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
+                            className="w-full h-10 mb-0 text-black"
+                            required
+                        />
+                        <p className='text-xs text-gray-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
                     </div>
                     <input
                         type="text"
                         placeholder="Nom *"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -181,7 +187,7 @@ const ConnexionForm = () => {
                         placeholder="Prénom *"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -189,23 +195,23 @@ const ConnexionForm = () => {
                         placeholder="Date de naissance *"
                         value={dob}
                         onChange={(e) => setDob(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <select
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded text-black-500"
+                        className="w-full p-2 border border-gray-300 rounded text-gray-500"
                         required
                     >
-                        <option className="text-black-500"value="">Sélectionnez votre genre *</option>
-                        <option className="text-black-500"value="homme">Homme</option>
-                        <option className="text-black-500"value="femme">Femme</option>
-                        <option className="text-black-500"value="autre">Autre</option>
+                        <option value="" className="text-black">Sélectionnez votre genre *</option>
+                        <option value="homme" className="text-black">Homme</option>
+                        <option value="femme" className="text-black">Femme</option>
+                        <option value="autre" className="text-black">Autre</option>
                     </select>
                     <div className="avatar-selection">
-                        <p>Sélectionnez votre avatar : *</p>
-                        <div className="avatars">
+                        <p className="text-black">Sélectionnez votre avatar : *</p>
+                        <div className="avatars flex flex-wrap">
                             {avatarOptions.map((url, index) => (
                                 <img
                                     key={index}
@@ -224,30 +230,28 @@ const ConnexionForm = () => {
                             ))}
                         </div>
                     </div>
-                    <p className='text-xs text-black-500 mt-0'>* champs obligatoires</p>
-
-                    <button type="submit"
-                            className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+                    <p className='text-xs text-gray-500 mt-0'>* champs obligatoires</p>
+                    <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         S'inscrire
                     </button>
                 </form>
             ) : (
-                <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold text-center">Connexion</h2>
+                <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg bg-white">
+                    <h2 className="text-2xl font-bold text-center text-black">Connexion</h2>
                     <input
                         type="email"
-                        placeholder="Adresse e-mail*"
+                        placeholder="Adresse e-mail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
                         type="password"
-                        placeholder="Mot de passe*"
+                        placeholder="Mot de passe"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
@@ -256,13 +260,13 @@ const ConnexionForm = () => {
                 </form>
             )}
             <button
-                onClick={() => setIsNewUser(!isNewUser)}
-                className="mt-4 text-blue-500 hover:underline p-1"
-            >
-                {isNewUser ? 'Retour à la connexion' : "Je n'ai pas de compte"}
-            </button>
+    onClick={() => setIsNewUser(!isNewUser)}
+    className="mt-4 px-4 py-2 mb-6 bg-purple-700 text-white rounded hover:bg-purple-800"
+>
+    {isNewUser ? 'Retour à la connexion' : "Je n'ai pas de compte"}
+</button>
         </div>
     );
-};
+}
 
 export default ConnexionForm;
