@@ -1,16 +1,17 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, collection, getDocs } from "firebase/firestore";
 import { FiEdit2 } from "react-icons/fi";
 
 const ProfilPage = () => {
   const [userData, setUserData] = useState({});
+  const [editField, setEditField] = useState("");
+  const [games, setGames] = useState([]);
+  const [selectedGames, setSelectedGames] = useState([]);
   const navigate = useNavigate();
   const auth = getAuth();
   const db = getFirestore();
-  const [editField, setEditField] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -19,7 +20,9 @@ const ProfilPage = () => {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-          setUserData(userSnap.data());
+          const userData = userSnap.data();
+          setUserData(userData);
+          setSelectedGames(userData.games || []);
         } else {
           console.log("Aucune donnée utilisateur trouvée!");
         }
@@ -28,6 +31,13 @@ const ProfilPage = () => {
       }
     });
 
+    const fetchGames = async () => {
+      const gamesSnapshot = await getDocs(collection(db, 'games'));
+      const gamesList = gamesSnapshot.docs.map(doc => doc.data().name);
+      setGames(gamesList);
+    };
+
+    fetchGames();
     return () => unsubscribe();
   }, [auth, db, navigate]);
 
@@ -52,6 +62,25 @@ const ProfilPage = () => {
     }
   };
 
+  const handleGameSelection = (e) => {
+    const value = e.target.value;
+    if (selectedGames.includes(value)) {
+      setSelectedGames(selectedGames.filter(game => game !== value));
+    } else if (selectedGames.length < 4) {
+      setSelectedGames([...selectedGames, value]);
+    }
+  };
+
+  const saveGames = async () => {
+    try {
+      const userRef = doc(db, "utilisateurs", auth.currentUser.uid);
+      await updateDoc(userRef, { games: selectedGames });
+      setUserData({ ...userData, games: selectedGames });
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour des jeux", error);
+    }
+  };
+
   return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-bleu to-violet bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
         <div className="p-10 backdrop-blur-lg bg-blanc/30 rounded-xl shadow-xl text-center space-y-4">
@@ -71,8 +100,7 @@ const ProfilPage = () => {
             ) : (
                 <span className="text-blanc">{`E-Mail: ${userData.email}`}</span>
             )}
-            <FiEdit2 onClick={() => setEditField("email")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
+            <FiEdit2 onClick={() => setEditField("email")} className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "lastName" ? (
@@ -86,8 +114,7 @@ const ProfilPage = () => {
             ) : (
                 <span className="text-blanc">{`Nom: ${userData.lastName}`}</span>
             )}
-            <FiEdit2 onClick={() => setEditField("lastName")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
+            <FiEdit2 onClick={() => setEditField("lastName")} className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "firstName" ? (
@@ -101,8 +128,7 @@ const ProfilPage = () => {
             ) : (
                 <span className="text-blanc">{`Prénom: ${userData.firstName}`}</span>
             )}
-            <FiEdit2 onClick={() => setEditField("firstName")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
+            <FiEdit2 onClick={() => setEditField("firstName")} className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "genre" ? (
@@ -116,8 +142,7 @@ const ProfilPage = () => {
             ) : (
                 <span className="text-blanc">{`Genre: ${userData.genre}`}</span>
             )}
-            <FiEdit2 onClick={() => setEditField("genre")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
+            <FiEdit2 onClick={() => setEditField("genre")} className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
           <div className="flex items-center justify-center space-x-2">
             {editField === "dob" ? (
@@ -131,11 +156,18 @@ const ProfilPage = () => {
             ) : (
                 <span className="text-blanc">{`Date de naissance: ${userData.dob}`}</span>
             )}
-            <FiEdit2 onClick={() => setEditField("dob")}
-                     className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
+            <FiEdit2 onClick={() => setEditField("dob")} className="cursor-pointer text-xl text-blanc hover:text-gray-300" />
           </div>
-          <button onClick={handleSignOut}
-                  className="mt-4 px-4 py-2 bg-violet text-blanc font-semibold rounded hover:bg-blue-600 transition-colors">
+          <div className="games-selection">
+            <p>Sélectionnez jusqu'à 4 jeux : *</p>
+            <select multiple className="w-full p-2 border border-gray-300 rounded" value={selectedGames} onChange={handleGameSelection}>
+              {games.map((game, index) => (
+                  <option key={index} value={game}>{game}</option>
+              ))}
+            </select>
+            <button onClick={saveGames} className="mt-2 p-2 bg-blue-500 text-white rounded">Enregistrer les jeux</button>
+          </div>
+          <button onClick={handleSignOut} className="mt-4 px-4 py-2 bg-violet text-blanc font-semibold rounded hover:bg-blue-600 transition-colors">
             Déconnexion
           </button>
         </div>

@@ -106,9 +106,18 @@ const MatchSystem = () => {
                   preventSwipe={['up', 'down']}
               >
                 <div
-                    className="relative w-full h-full bg-cover bg-center rounded-xl shadow-lg flex items-end justify-center p-4 text-white text-lg font-bold"
+                    className="relative w-full h-full bg-cover bg-center rounded-xl shadow-lg flex flex-col justify-between p-4 text-white text-lg font-bold"
                     style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
-                  <h3>{utilisateurActuel.username}</h3>
+                  <div className="flex justify-between w-full">
+                    <div className="text-left">
+                      <h3>{utilisateurActuel.username}</h3>
+                    </div>
+                    <div className="text-right">
+                      {utilisateurActuel.games && utilisateurActuel.games.map((game, index) => (
+                          <span key={index} className="block">{game}</span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </TinderCard>
           )}
