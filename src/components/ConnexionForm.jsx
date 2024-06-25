@@ -7,7 +7,6 @@ import './../styles/ConnexionForm.css';
 import logo from './../assets/LOGO.png';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
-
 const avatarPaths = [
     "avatars/image1.png",
     "avatars/image2.png",
@@ -16,7 +15,6 @@ const avatarPaths = [
     "avatars/image5.png",
     "avatars/image.png"
 ];
-
 
 const ConnexionForm = () => {
     const [email, setEmail] = useState('');
@@ -34,7 +32,6 @@ const ConnexionForm = () => {
     const auth = getAuth();
     const db = getFirestore();
     const storage = getStorage();
-
 
     useEffect(() => {
         const fetchAvatars = async () => {
@@ -161,17 +158,17 @@ const ConnexionForm = () => {
                         required
                     />
                     <div className="w-full p-2 border border-gray-300 rounded mb-1">
-    <input
-        type="password"
-        placeholder="Mot de passe *"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full h-10 mb-0"
-        required
-    />
-    <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
-</div>
-    <input
+                        <input
+                            type="password"
+                            placeholder="Mot de passe *"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full h-10 mb-0"
+                            required
+                        />
+                        <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
+                    </div>
+                    <input
                         type="text"
                         placeholder="Nom *"
                         value={lastName}
@@ -256,7 +253,7 @@ const ConnexionForm = () => {
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         Se connecter
                     </button>
-                    </form>
+                </form>
             )}
             <button
                 onClick={() => setIsNewUser(!isNewUser)}

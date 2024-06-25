@@ -8,27 +8,18 @@ import { useNavigate } from 'react-router-dom';
 const MatchSystem = () => {
   const [utilisateurs, setUtilisateurs] = useState([]);
   const [utilisateurActuelIndex, setUtilisateurActuelIndex] = useState(0);
+  const [isMatching, setIsMatching] = useState(false);
+  const [matchedUser, setMatchedUser] = useState(null);
   const db = getFirestore(app);
   const auth = getAuth(app);
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
   const defaultImageUrl = '/image.png';
-  const avatarUrls = [
-    '/image1.png',
-    '/image2.png',
-    '/image3.png',
-    '/image4.png',
-    '/image5.png',
-    '/image6.png',
-    '/image7.png',
-    defaultImageUrl,
-  ];
 
   useEffect(() => {
     const fetchAvatars = (users) => {
       const usersWithAvatars = users.map((user) => {
-        const randomAvatar = avatarUrls[Math.floor(Math.random() * avatarUrls.length)];
-        return { ...user, avatar: randomAvatar };
+        return { ...user, avatar: user.avatar || defaultImageUrl };
       });
       setUtilisateurs(usersWithAvatars);
     };
@@ -57,6 +48,8 @@ const MatchSystem = () => {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           // Le match existe, créez une conversation
+          setMatchedUser(utilisateurs[utilisateurActuelIndex]);
+          setIsMatching(true);
           const conversationId = `${currentUser.uid}_${swipedUserId}`;
           await setDoc(doc(db, "conversations", conversationId), {
             participants: [currentUser.uid, swipedUserId],
@@ -68,34 +61,25 @@ const MatchSystem = () => {
             sender: "system"
           });
 
-          // Naviguer vers la page de chat de la conversation nouvellement créée
-          navigate(`/chat/${conversationId}`);
+          // Animation de 5-6 secondes avant de naviguer vers la page de chat
+          setTimeout(() => {
+            navigate(`/chat/${conversationId}`);
+          }, 5000);
         } else {
           // Pas encore de match, enregistrez le like
           await setDoc(doc(db, "matches", `${currentUser.uid}_${swipedUserId}`), {
             liked: true
           });
+          setUtilisateurActuelIndex((prevIndex) => (prevIndex + 1) % utilisateurs.length);
         }
       } catch (error) {
         console.error('Erreur lors du swipe :', error);
       }
+    } else {
+      // Passer à l'utilisateur suivant en cas de swipe left
+      setUtilisateurActuelIndex((prevIndex) => (prevIndex + 1) % utilisateurs.length);
     }
-    // Passer à l'utilisateur suivant qu'il y ait un match ou non
-    setUtilisateurActuelIndex((prevIndex) => (prevIndex + 1) % utilisateurs.length);
   };
-
-  useEffect(() => {
-    if (utilisateurs.length > 0) {
-      const updatedUtilisateurs = utilisateurs.map((user, index) => {
-        if (index === utilisateurActuelIndex) {
-          const randomAvatar = avatarUrls[Math.floor(Math.random() * avatarUrls.length)];
-          return { ...user, avatar: randomAvatar };
-        }
-        return user;
-      });
-      setUtilisateurs(updatedUtilisateurs);
-    }
-  }, [utilisateurActuelIndex]);
 
   if (utilisateurs.length === 0) return <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">Chargement...</div>;
 
@@ -104,6 +88,15 @@ const MatchSystem = () => {
   return (
       <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
         <h1 className="text-2xl font-bold mb-8">Echec&Match</h1>
+        {isMatching && matchedUser && (
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-75 z-50">
+              <div className="flex items-center justify-center space-x-4">
+                <img src={currentUser.photoURL || defaultImageUrl} alt="Your Avatar" className="w-24 h-24 rounded-full border-4 border-white" />
+                <img src={matchedUser.avatar} alt="Matched User Avatar" className="w-24 h-24 rounded-full border-4 border-white" />
+              </div>
+              <h2 className="text-4xl text-white mt-4">Vous avez matché avec {matchedUser.username}!</h2>
+            </div>
+        )}
         <div className="relative w-11/12 max-w-xs h-96">
           {utilisateurActuel && (
               <TinderCard
@@ -121,11 +114,11 @@ const MatchSystem = () => {
           )}
         </div>
         <div className="flex justify-center mt-4 space-x-4">
-          <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton p-3 bg-white text-red-500 rounded-full shadow-md hover:scale-110 transition-transform">
-            <i className="fas fa-times text-xl"></i>
+          <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton p-3">
+            <img src="/x-button.png" alt="Pass" className="w-12 h-12" />
           </button>
-          <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton p-3 bg-white text-green-500 rounded-full shadow-md hover:scale-110 transition-transform">
-            <i className="fas fa-heart text-xl"></i>
+          <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton p-3">
+            <img src="/v-button.png" alt="Like" className="w-12 h-12" />
           </button>
         </div>
       </div>
