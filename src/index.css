@@ -1,4 +1,4 @@
-/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -61,5 +61,3 @@ body {
 .carte-content {
   font-size: 16px;
 }
-
-/* Ajoutez d'autres styles spécifiques à votre application ici */

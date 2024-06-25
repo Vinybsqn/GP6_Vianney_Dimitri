@@ -75,8 +75,7 @@ const ChatPage = () => {
     };
 
     return (
-
-        <div className="h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
+        <div className="min-h-screen flex flex-col bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
             {/* Back Button */}
             <div className="p-4 text-white">
                 <button onClick={() => navigate(-1)} className="inline-flex items-center">
@@ -88,17 +87,13 @@ const ChatPage = () => {
             </div>
 
             {/* Conversation Title */}
-            <div className="p-4 text-center">
+            <div className="p-4 text-center text-white">
                 {otherUserName && <h2 className="text-lg font-bold">Discussion avec {otherUserName}</h2>}
             </div>
 
-            {/* Message List */}
-            <div className="flex-auto items-center justify-center overflow-hidden px-4 py-2 space-y-4">
+            {/* Message List and Input */}
+            <div className="flex-auto flex flex-col justify-between px-4 py-2">
                 <MessageList messages={messages} currentUserID={currentUserID} bottomRef={bottomRef} />
-            </div>
-
-            {/* Message Input */}
-            <div className="p-4 backdrop-blur-md flex items-center justify-center flex-col px-4 py-2 space-y-4">
                 <MessageInput message={message} onMessageChange={handleMessageChange} onMessageSubmit={handleMessageSubmit} />
             </div>
         </div>

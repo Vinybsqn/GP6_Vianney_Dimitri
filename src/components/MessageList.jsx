@@ -7,10 +7,12 @@ const MessageList = ({ messages, currentUserID, bottomRef }) => {
     }, [messages]);
 
     return (
-        <div className="messages-list mb-5 p-2 border border-purple-300 bg-purple-200 rounded h-72 overflow-y-scroll" style={{ width: '600px', margin: 'auto' }}>
+        <div className="messages-list mb-5 p-2 backdrop-blur-md bg-white/30 border border-white/20 rounded-3xl h-72 overflow-y-scroll custom-scrollbar" style={{ width: '600px', margin: 'auto' }}>
             {messages.map((msg) => (
-                <div key={msg.id} className={`my-2.5 ${msg.sender === currentUserID ? "text-right" : "text-left"}`}>
-                    <span className={`p-2.5 rounded-full ${msg.sender === currentUserID ? "bg-purple-800" : "bg-purple-400"}`}>{msg.text}</span>
+                <div key={msg.id} className={`flex ${msg.sender === currentUserID ? "justify-end" : "justify-start"} my-2`}>
+                    <div className={`p-3 rounded-3xl max-w-xs ${msg.sender === currentUserID ? "bg-blue-500 text-white" : "bg-gray-300 text-black"}`}>
+                        {msg.text}
+                    </div>
                 </div>
             ))}
             <div ref={bottomRef} />
