@@ -1,7 +1,8 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans&display=swap');
 
 :root {
   --noir: #000000;
@@ -15,9 +16,8 @@ body {
   padding: 0;
   background: linear-gradient(135deg, #12225D 0%, #74279E 100%);
   color: #FFFFFF;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Reddit Sans', sans-serif;
 }
-
 
 .glassmorphism {
   background: rgba(255, 255, 255, 0.1);

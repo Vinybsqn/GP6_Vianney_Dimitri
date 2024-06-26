@@ -18,6 +18,7 @@ import "slick-carousel/slick/slick-theme.css";
 function App() {
     return (
         <AuthProvider>
+            <link href="https://fonts.googleapis.com/css2?family=Reddit+Sans&display=swap" rel="stylesheet"></link>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<ConnexionForm />} />

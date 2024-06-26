@@ -13,6 +13,7 @@ import joueur_minecraft from './../assets/ambassadeurs/joueur_minecraft.webp';
 import joueuse_rocket_league from './../assets/ambassadeurs/joueur_rocket.webp';
 
 
+
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 const HomePage = () => {
