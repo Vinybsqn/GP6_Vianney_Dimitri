@@ -87,7 +87,7 @@ const MatchSystem = () => {
 
   return (
       <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-gray-500">
-        <h1 className="text-2xl font-bold mb-8">Echec&Match</h1>
+        <h1 className="text-2xl font-bold mb-8">Trouvé votre partenaire de jeu !</h1>
         {isMatching && matchedUser && (
             <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-75 z-50">
               <div className="flex items-center justify-center space-x-4">
@@ -97,7 +97,7 @@ const MatchSystem = () => {
               <h2 className="text-4xl text-white mt-4">Vous avez matché avec {matchedUser.username}!</h2>
             </div>
         )}
-        <div className="relative w-11/12 max-w-xs h-96">
+        <div className="relative w-11/12 max-w-md h-[36rem]">
           {utilisateurActuel && (
               <TinderCard
                   className="absolute w-full h-full"
@@ -107,27 +107,29 @@ const MatchSystem = () => {
               >
                 <div
                     className="relative w-full h-full bg-cover bg-center rounded-xl shadow-lg flex flex-col justify-between p-4 text-white text-lg font-bold"
-                    style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
+                    style={{backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})`}}>
                   <div className="flex justify-between w-full">
-                    <div className="text-left">
+                    <div
+                        className="text-left bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
                       <h3>{utilisateurActuel.username}</h3>
                     </div>
-                    <div className="text-right">
+                  </div>
+                    <div
+                        className="text-center bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
                       {utilisateurActuel.games && utilisateurActuel.games.map((game, index) => (
                           <span key={index} className="block">{game}</span>
                       ))}
                     </div>
-                  </div>
                 </div>
               </TinderCard>
           )}
         </div>
         <div className="flex justify-center mt-4 space-x-4">
           <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton p-3">
-            <img src="/x-button.png" alt="Pass" className="w-12 h-12" />
+            <img src="/x-button.png" alt="Pass" className="w-12 h-12"/>
           </button>
           <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton p-3">
-            <img src="/v-button.png" alt="Like" className="w-12 h-12" />
+            <img src="/v-button.png" alt="Like" className="w-12 h-12"/>
           </button>
         </div>
       </div>
