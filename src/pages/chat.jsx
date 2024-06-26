@@ -42,12 +42,13 @@ const ChatPage = () => {
             const conversationRef = doc(db, 'conversations', conversationId);
             const conversationSnapshot = await getDoc(conversationRef);
             if (conversationSnapshot.exists()) {
-                const otherUserID = conversationSnapshot.data().users.find(id => id !== currentUserID);
+                const otherUserID = conversationSnapshot.data().participants.find(id => id !== currentUserID);
                 if (otherUserID) {
                     const userRef = doc(db, 'utilisateurs', otherUserID);
                     const userSnapshot = await getDoc(userRef);
                     if (userSnapshot.exists()) {
-                        setOtherUserName(userSnapshot.data().displayName);
+                        const userData = userSnapshot.data();
+                        setOtherUserName(userData.username || `${userData.firstName} ${userData.lastName}`);
                     }
                 }
             }
