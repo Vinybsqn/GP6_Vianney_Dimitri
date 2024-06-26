@@ -213,8 +213,7 @@ const ConnexionForm = () => {
                         >
                             {showPassword ? <FaEyeSlash /> : <FaEye />}
                         </button>
-                        <p className='text-xs text-gray-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et
-                            un chiffre</p>
+                        <p className='text-xs text-gray-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
                     </div>
                     <input
                         type="text"
@@ -274,12 +273,19 @@ const ConnexionForm = () => {
                     </div>
                     <div className="games-selection">
                         <p>Sélectionnez jusqu'à 4 jeux : *</p>
-                        <select multiple className="w-full p-2 border border-gray-300 rounded text-black" value={selectedGames}
-                                onChange={handleGameSelection}>
+                        <div className="grid grid-cols-2 gap-2">
                             {games.map((game, index) => (
-                                <option key={index} value={game}>{game}</option>
+                                <div
+                                    key={index}
+                                    className={`p-2 border rounded-lg cursor-pointer transition-transform transform hover:scale-105 ${
+                                        selectedGames.includes(game) ? 'bg-purple-500 text-white border-transparent' : 'bg-gray-300 text-black border-gray-400'
+                                    }`}
+                                    onClick={() => handleGameSelection({ target: { value: game } })}
+                                >
+                                    {game}
+                                </div>
                             ))}
-                        </select>
+                        </div>
                     </div>
                     <p className='text-xs text-gray-500 mt-0'>* champs obligatoires</p>
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
