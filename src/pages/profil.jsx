@@ -160,7 +160,7 @@ const ProfilPage = () => {
           </div>
           <div className="games-selection">
             <p>Sélectionnez jusqu'à 4 jeux : *</p>
-            <select multiple className="w-full p-2 border border-gray-300 rounded" value={selectedGames} onChange={handleGameSelection}>
+            <select multiple className="text-black w-full p-2 border border-gray-300 rounded" value={selectedGames} onChange={handleGameSelection}>
               {games.map((game, index) => (
                   <option key={index} value={game}>{game}</option>
               ))}
