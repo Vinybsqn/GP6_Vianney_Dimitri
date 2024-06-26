@@ -4,6 +4,8 @@ import { getAuth } from 'firebase/auth';
 import app from './../../firebase-config';
 import TinderCard from 'react-tinder-card';
 import { useNavigate } from 'react-router-dom';
+import Lottie from 'lottie-react';  // Utilisation correcte de l'importation par défaut
+import matchAnimation from '../assets/animations/match.json';
 
 const MatchSystem = () => {
   const [utilisateurs, setUtilisateurs] = useState([]);
@@ -63,6 +65,7 @@ const MatchSystem = () => {
 
           // Animation de 5-6 secondes avant de naviguer vers la page de chat
           setTimeout(() => {
+            setIsMatching(false);
             navigate(`/chat/${conversationId}`);
           }, 5000);
         } else {
@@ -90,7 +93,8 @@ const MatchSystem = () => {
         <h1 className="text-2xl font-bold mb-8">Trouvé votre partenaire de jeu !</h1>
         {isMatching && matchedUser && (
             <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-75 z-50">
-              <div className="flex items-center justify-center space-x-4">
+              <Lottie animationData={matchAnimation} style={{ width: 300, height: 300 }} />
+              <div className="flex items-center justify-center space-x-4 mt-4">
                 <img src={currentUser.photoURL || defaultImageUrl} alt="Your Avatar" className="w-24 h-24 rounded-full border-4 border-white" />
                 <img src={matchedUser.avatar} alt="Matched User Avatar" className="w-24 h-24 rounded-full border-4 border-white" />
               </div>
@@ -107,29 +111,27 @@ const MatchSystem = () => {
               >
                 <div
                     className="relative w-full h-full bg-cover bg-center rounded-xl shadow-lg flex flex-col justify-between p-4 text-white text-lg font-bold"
-                    style={{backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})`}}>
+                    style={{ backgroundImage: `url(${utilisateurActuel.avatar || defaultImageUrl})` }}>
                   <div className="flex justify-between w-full">
-                    <div
-                        className="text-left bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
+                    <div className="text-left bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
                       <h3>{utilisateurActuel.username}</h3>
                     </div>
-                  </div>
-                    <div
-                        className="text-center bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
+                    <div className="text-right bg-white bg-opacity-30 backdrop-blur-lg p-2 rounded-lg text-white leading-tight">
                       {utilisateurActuel.games && utilisateurActuel.games.map((game, index) => (
                           <span key={index} className="block">{game}</span>
                       ))}
                     </div>
+                  </div>
                 </div>
               </TinderCard>
           )}
         </div>
         <div className="flex justify-center mt-4 space-x-4">
           <button onClick={() => handleSwipe('left', utilisateurActuel.id)} className="swipeButton passButton p-3">
-            <img src="/x-button.png" alt="Pass" className="w-12 h-12"/>
+            <img src="/x-button.png" alt="Pass" className="w-12 h-12" />
           </button>
           <button onClick={() => handleSwipe('right', utilisateurActuel.id)} className="swipeButton likeButton p-3">
-            <img src="/v-button.png" alt="Like" className="w-12 h-12"/>
+            <img src="/v-button.png" alt="Like" className="w-12 h-12" />
           </button>
         </div>
       </div>
