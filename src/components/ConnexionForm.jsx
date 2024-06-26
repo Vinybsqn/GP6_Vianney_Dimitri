@@ -6,6 +6,7 @@ import './../styles/ConnexionForm.css';
 import logo from './../assets/LOGO.png';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
+
 const avatarPaths = [
     "avatars/image1.png",
     "avatars/image2.png",
@@ -157,14 +158,14 @@ const ConnexionForm = () => {
             <img src={logo} alt="Logo" className="mb-6 w-72 h-auto"/>
             {errorMessage && <div className="mb-4 text-red-500">{errorMessage}</div>}
             {isNewUser ? (
-                <form onSubmit={handleSignup} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold text-center">Inscription</h2>
+                <form onSubmit={handleSignup} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg bg-white">
+                    <h2 className="text-2xl font-bold text-center text-black">Inscription</h2>
                     <input
                         type="text"
                         placeholder="Nom d'utilisateur *"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -172,7 +173,7 @@ const ConnexionForm = () => {
                         placeholder="Adresse e-mail *"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <div className="w-full p-2 border border-gray-300 rounded mb-1">
@@ -181,17 +182,18 @@ const ConnexionForm = () => {
                             placeholder="Mot de passe *"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full h-10 mb-0"
+                            className="w-full h-10 mb-0 text-black"
                             required
                         />
-                        <p className='text-xs text-black-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et un chiffre</p>
+                        <p className='text-xs text-gray-500 mt-0'>au moins 8 caractères, une majuscule, une minuscule et
+                            un chiffre</p>
                     </div>
                     <input
                         type="text"
                         placeholder="Nom *"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -199,7 +201,7 @@ const ConnexionForm = () => {
                         placeholder="Prénom *"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
@@ -207,23 +209,23 @@ const ConnexionForm = () => {
                         placeholder="Date de naissance *"
                         value={dob}
                         onChange={(e) => setDob(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <select
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded text-black-500"
+                        className="w-full p-2 border border-gray-300 rounded text-gray-500"
                         required
                     >
-                        <option className="text-black-500" value="">Sélectionnez votre genre *</option>
-                        <option className="text-black-500" value="homme">Homme</option>
-                        <option className="text-black-500" value="femme">Femme</option>
-                        <option className="text-black-500" value="autre">Autre</option>
+                        <option value="" className="text-black">Sélectionnez votre genre *</option>
+                        <option value="homme" className="text-black">Homme</option>
+                        <option value="femme" className="text-black">Femme</option>
+                        <option value="autre" className="text-black">Autre</option>
                     </select>
                     <div className="avatar-selection">
-                        <p>Sélectionnez votre avatar : *</p>
-                        <div className="avatars">
+                        <p className="text-black">Sélectionnez votre avatar : *</p>
+                        <div className="avatars flex flex-wrap">
                             {avatarOptions.map((url, index) => (
                                 <img
                                     key={index}
@@ -244,35 +246,35 @@ const ConnexionForm = () => {
                     </div>
                     <div className="games-selection">
                         <p>Sélectionnez jusqu'à 4 jeux : *</p>
-                        <select multiple className="w-full p-2 border border-gray-300 rounded" value={selectedGames} onChange={handleGameSelection}>
+                        <select multiple className="w-full p-2 border border-gray-300 rounded text-black" value={selectedGames}
+                                onChange={handleGameSelection}>
                             {games.map((game, index) => (
                                 <option key={index} value={game}>{game}</option>
                             ))}
                         </select>
                     </div>
-                    <p className='text-xs text-black-500 mt-0'>* champs obligatoires</p>
-
+                    <p className='text-xs text-gray-500 mt-0'>* champs obligatoires</p>
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
                         S'inscrire
                     </button>
                 </form>
             ) : (
-                <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg">
-                    <h2 className="text-2xl font-bold text-center">Connexion</h2>
+                <form onSubmit={handleLogin} className="w-full max-w-md p-8 space-y-4 shadow-md rounded-lg bg-white">
+                    <h2 className="text-2xl font-bold text-center text-black">Connexion</h2>
                     <input
                         type="email"
-                        placeholder="Adresse e-mail*"
+                        placeholder="Adresse e-mail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <input
                         type="password"
-                        placeholder="Mot de passe*"
+                        placeholder="Mot de passe"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full p-2 border border-gray-300 rounded text-black"
                         required
                     />
                     <button type="submit" className="w-full p-2 bg-purple-500 text-white rounded hover:bg-purple-600">
@@ -282,7 +284,7 @@ const ConnexionForm = () => {
             )}
             <button
                 onClick={() => setIsNewUser(!isNewUser)}
-                className="mt-4 text-blue-500 hover:underline p-1"
+                className="mt-4 px-4 py-2 mb-6 bg-purple-700 text-white rounded hover:bg-purple-800"
             >
                 {isNewUser ? 'Retour à la connexion' : "Je n'ai pas de compte"}
             </button>
