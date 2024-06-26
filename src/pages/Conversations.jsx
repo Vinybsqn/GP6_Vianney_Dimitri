@@ -10,6 +10,7 @@ const Conversations = () => {
     const db = getFirestore(app);
     const auth = getAuth(app);
     const currentUserID = auth.currentUser?.uid;
+    const defaultImageUrl = '/image.png';
 
     useEffect(() => {
         if (!currentUserID) return;
@@ -37,7 +38,9 @@ const Conversations = () => {
                     const userDocRef = doc(db, "utilisateurs", id);
                     const userDoc = await getDoc(userDocRef);
                     if (userDoc.exists()) {
-                        setUserDetails(prev => ({ ...prev, [id]: userDoc.data() }));
+                        const userData = userDoc.data();
+                        const avatar = userData.avatar || defaultImageUrl;
+                        setUserDetails(prev => ({ ...prev, [id]: { ...userData, avatar } }));
                     }
                 }
             });
@@ -55,15 +58,17 @@ const Conversations = () => {
                         <li key={conv.id} className="border-b border-white/20 last:border-b-0">
                             <Link
                                 to={`/chat/${conv.id}`}
-                                className="block p-3 hover:bg-white/20 rounded transition-colors"
+                                className="block p-3 hover:bg-white/20 rounded transition-colors flex items-center"
                             >
-                                Conversation with
-                                <span className="font-semibold">
-                                    {' ' + (userDetails[conv.otherUserID]?.username || userDetails[conv.otherUserID]?.firstName || 'User')}
-                                </span>
-                                <span className="text-xs">
-                                    <br/>
-                                    {' ' + (userDetails[conv.otherUserID]?.firstName + ' ' + (userDetails[conv.otherUserID]?.lastName ))}
+                                <img
+                                    src={userDetails[conv.otherUserID]?.avatar || defaultImageUrl}
+                                    alt="Avatar"
+                                    className="w-10 h-10 rounded-full mr-3"
+                                />
+                                <span>Conversation avec
+                                    <span className="font-semibold">
+                                        {' ' + (userDetails[conv.otherUserID]?.username || userDetails[conv.otherUserID]?.firstName || 'User')}
+                                    </span>
                                 </span>
                             </Link>
                         </li>
