@@ -11,7 +11,6 @@ import ConnexionForm from "./components/ConnexionForm.jsx";
 import Footer from "./components/footer.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import { AuthProvider } from './components/AuthContext';
-import AfficherUtilisateur from "./components/AfficherUtilisateur.jsx";
 import Conversations from "./pages/Conversations.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
