@@ -3,10 +3,6 @@ import React, { useEffect, useRef } from 'react';
 const MessageList = ({ messages, currentUserID }) => {
     const messagesEndRef = useRef(null);
 
-    useEffect(() => {
-        // Faire défiler automatiquement le conteneur de messages vers le bas
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
 
     return (
         <>
