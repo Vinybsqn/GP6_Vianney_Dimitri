@@ -182,13 +182,13 @@ const HomePage = () => {
 
                 <section className="bg-white/10 backdrop-blur-md p-10 rounded-3xl shadow-2xl border border-white/20 w-full max-w-4xl">
                     <h2 className="text-4xl font-bold mb-4">Témoignages</h2>
-                    <p className="text-lg mb-6">Lisez les témoignages de nos membres et découvrez comment Échec & Match a changé leur expérience de jeu.</p>
+                    <p className="text-lg mb-6">Lisez les témoignages de nos membres et découvrez comment Echec & Match a changé leur expérience de jeu.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                        <div className="p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
                             <h3 className="text-2xl font-bold mb-2">"J'ai trouvé des amis pour jouer à Fortnite"</h3>
                             <p className="text-lg">- Marie</p>
                         </div>
-                        <div className="bg-white/20 p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
+                        <div className="p-4 rounded-xl shadow-lg backdrop-blur-md border border-white/10">
                             <h3 className="text-2xl font-bold mb-2">"J'ai amélioré mes compétences grâce à Échec & Match"</h3>
                             <p className="text-lg">- Lucas</p>
                         </div>
